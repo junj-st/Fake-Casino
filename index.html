@@ -78,6 +78,13 @@
         <div id="blackjack-game" class="game-area hidden">
             <div class="betting-area">
                 <label>Bet Amount: $<input type="number" id="blackjack-bet" value="50" min="10" max="1000"></label>
+                <div class="quick-bet-buttons">
+                    <button class="quick-bet-btn" data-bet="25">$25</button>
+                    <button class="quick-bet-btn" data-bet="50">$50</button>
+                    <button class="quick-bet-btn" data-bet="100">$100</button>
+                    <button class="quick-bet-btn" data-bet="250">$250</button>
+                    <button class="quick-bet-btn" data-bet="500">$500</button>
+                </div>
                 <button id="deal-btn" class="game-btn">Deal Cards</button>
             </div>
             <div class="game-board">
@@ -204,6 +211,9 @@
                 <button class="category-btn" data-category="plinko">Plinko Balls</button>
                 <button class="category-btn" data-category="planes">Airplanes</button>
                 <button class="category-btn" data-category="trails">Trails</button>
+                <button class="category-btn" data-category="cursors">Cursors</button>
+                <button class="category-btn" data-category="particles">Particles</button>
+                <button class="category-btn" data-category="themes">Themes</button>
             </div>
             <div class="shop-items" id="shop-items">
                 <!-- Items will be populated by JavaScript -->

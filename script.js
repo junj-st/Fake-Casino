@@ -60,7 +60,11 @@ class FakeCasino {
             effect: null,
             plinko: null,
             plane: null,
-            trail: null
+            trail: null,
+            cursor: null,
+            sound: null,
+            particle: null,
+            theme: null
         };
     }
 
@@ -76,6 +80,56 @@ class FakeCasino {
     saveGameStats() {
         this.gameStats.plinko = this.games.plinko.stats;
         localStorage.setItem('fake-casino-stats', JSON.stringify(this.gameStats));
+    }
+
+    createParticleEffect(particleType) {
+        // Remove existing particle effects
+        const existingParticles = document.querySelectorAll('.particle-effect');
+        existingParticles.forEach(p => p.remove());
+        
+        if (particleType === 'particles-none') return;
+        
+        const particleContainer = document.createElement('div');
+        particleContainer.className = `particle-effect ${particleType}`;
+        document.body.appendChild(particleContainer);
+        
+        // Create particles based on type
+        const particleCount = 20;
+        for (let i = 0; i < particleCount; i++) {
+            setTimeout(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Set particle appearance based on type
+                switch(particleType) {
+                    case 'floating-coins':
+                        particle.textContent = '🪙';
+                        break;
+                    case 'magic-sparkles':
+                        particle.textContent = '✨';
+                        break;
+                    case 'floating-cards':
+                        particle.textContent = '🃏';
+                        break;
+                    case 'dice-particles':
+                        particle.textContent = '🎲';
+                        break;
+                    case 'gem-shower':
+                        particle.textContent = '💎';
+                        break;
+                    case 'phoenix-feathers':
+                        particle.textContent = '🪶';
+                        break;
+                }
+                
+                // Random positioning
+                particle.style.left = Math.random() * window.innerWidth + 'px';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                
+                particleContainer.appendChild(particle);
+            }, i * 100);
+        }
     }
 
     updateBalance() {
@@ -134,6 +188,21 @@ class FakeCasino {
         if (this.activeCosmetics.effect) {
             this.applyEffect(this.activeCosmetics.effect);
         }
+        
+        // Apply cursor
+        if (this.activeCosmetics.cursor) {
+            this.applyCursor(this.activeCosmetics.cursor);
+        }
+        
+        // Apply particle effects
+        if (this.activeCosmetics.particle) {
+            this.createParticleEffect(this.activeCosmetics.particle);
+        }
+        
+        // Apply theme
+        if (this.activeCosmetics.theme) {
+            this.applyTheme(this.activeCosmetics.theme);
+        }
     }
 
     applyBackground(backgroundId) {
@@ -144,7 +213,12 @@ class FakeCasino {
             'neon-bg': 'linear-gradient(135deg, #ff00ff 0%, #00ffff 25%, #ff0080 50%, #8000ff 75%, #ff4080 100%)',
             'galaxy-bg': 'linear-gradient(135deg, #2c1810 0%, #8b4513 25%, #1e0a3c 50%, #4b0082 75%, #0f0f23 100%)',
             'matrix-bg': 'linear-gradient(135deg, #001100 0%, #003300 25%, #002200 50%, #004400 75%, #001100 100%)',
-            'sunset-bg': 'linear-gradient(135deg, #ff7e5f 0%, #feb47b 25%, #ff6b6b 50%, #feca57 75%, #ff9ff3 100%)'
+            'sunset-bg': 'linear-gradient(135deg, #ff7e5f 0%, #feb47b 25%, #ff6b6b 50%, #feca57 75%, #ff9ff3 100%)',
+            'aurora-bg': 'linear-gradient(135deg, #00c9ff 0%, #92fe9d 25%, #00c9ff 50%, #92fe9d 75%, #00c9ff 100%)',
+            'volcanic-bg': 'linear-gradient(135deg, #8b0000 0%, #ff4500 25%, #ff6347 50%, #ffa500 75%, #ff0000 100%)',
+            'cyberpunk-bg': 'linear-gradient(135deg, #0a0a0a 0%, #1a0033 25%, #330066 50%, #0a0a0a 75%, #1a0033 100%)',
+            'underwater-bg': 'linear-gradient(135deg, #001f3f 0%, #003d7a 25%, #0077be 50%, #20b2aa 75%, #48d1cc 100%)',
+            'crystal-bg': 'linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 25%, #a0a0a0 50%, #e0e0e0 75%, #ffffff 100%)'
         };
         
         if (backgrounds[backgroundId]) {
@@ -465,6 +539,115 @@ class FakeCasino {
         }
     }
 
+    applyCursor(cursorId) {
+        const cursorStyles = {
+            'golden-cursor': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><text y=\'24\' font-size=\'24\'>�</text></svg>"), pointer',
+            'fire-cursor': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><text y=\'24\' font-size=\'24\'>🔥</text></svg>"), pointer',
+            'diamond-cursor': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><text y=\'24\' font-size=\'24\'>💎</text></svg>"), pointer',
+            'magic-cursor': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><text y=\'24\' font-size=\'24\'>🪄</text></svg>"), pointer',
+            'lightning-cursor': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><text y=\'24\' font-size=\'24\'>⚡</text></svg>"), pointer',
+            'star-cursor': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><text y=\'24\' font-size=\'24\'>⭐</text></svg>"), pointer'
+        };
+        
+        document.body.style.cursor = cursorStyles[cursorId] || 'default';
+    }
+
+    removeParticleEffects() {
+        const existingParticles = document.querySelectorAll('.particle-effect');
+        existingParticles.forEach(p => p.remove());
+    }
+
+    applyTheme(themeId) {
+        // Remove existing themes
+        document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+        
+        // Add new theme
+        if (themeId && themeId !== 'theme-default') {
+            document.body.classList.add(themeId);
+        }
+    }
+
+    removeTheme() {
+        document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+    }
+
+    // Animation helper functions for blackjack
+    addCardAnimation(target) {
+        const targetElement = target === 'player' ? 
+            document.querySelector('#player-hand') : 
+            document.querySelector('#dealer-hand');
+        
+        if (targetElement) {
+            targetElement.style.transform = 'scale(1.05)';
+            targetElement.style.transition = 'transform 0.2s ease';
+            setTimeout(() => {
+                targetElement.style.transform = 'scale(1)';
+            }, 200);
+        }
+        
+        // Create card flip animation
+        const cardFlip = document.createElement('div');
+        cardFlip.className = 'card-flip-animation';
+        cardFlip.textContent = '🃏';
+        cardFlip.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateY(0deg);
+            font-size: 3rem;
+            pointer-events: none;
+            z-index: 1000;
+            animation: cardFlip 0.6s ease-out forwards;
+        `;
+        
+        document.body.appendChild(cardFlip);
+        setTimeout(() => cardFlip.remove(), 600);
+    }
+
+    addBustAnimation() {
+        const bust = document.createElement('div');
+        bust.className = 'bust-animation';
+        bust.textContent = '💥 BUST!';
+        bust.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color: #ff0000;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            pointer-events: none;
+            z-index: 1001;
+            animation: bustShake 1.5s ease-out forwards;
+        `;
+        
+        document.body.appendChild(bust);
+        setTimeout(() => bust.remove(), 1500);
+    }
+
+    addPerfectAnimation() {
+        const perfect = document.createElement('div');
+        perfect.className = 'perfect-animation';
+        perfect.textContent = '🎯 PERFECT 21!';
+        perfect.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: #00ff00;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            pointer-events: none;
+            z-index: 1001;
+            animation: perfectGlow 1s ease-out forwards;
+        `;
+        
+        document.body.appendChild(perfect);
+        setTimeout(() => perfect.remove(), 1000);
+    }
+
     initializeUI() {
         // Add money button
         document.getElementById('add-money').addEventListener('click', () => {
@@ -541,6 +724,44 @@ class FakeCasino {
         document.getElementById('deal-btn').addEventListener('click', () => this.dealBlackjack());
         document.getElementById('hit-btn').addEventListener('click', () => this.hitBlackjack());
         document.getElementById('stand-btn').addEventListener('click', () => this.standBlackjack());
+        
+        // Add quick bet button functionality
+        document.querySelectorAll('.quick-bet-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const betAmount = parseInt(btn.dataset.bet);
+                document.getElementById('blackjack-bet').value = betAmount;
+                
+                // Add visual feedback
+                btn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    btn.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+        
+        // Add keyboard shortcuts for faster gameplay
+        document.addEventListener('keydown', (e) => {
+            if (!this.games.blackjack.active && document.getElementById('blackjack-game').style.display !== 'none') {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    if (!document.getElementById('deal-btn').disabled) {
+                        this.dealBlackjack();
+                    }
+                }
+            } else if (this.games.blackjack.active) {
+                if (e.key === 'h' || e.key === 'H') {
+                    e.preventDefault();
+                    if (!document.getElementById('hit-btn').disabled) {
+                        this.hitBlackjack();
+                    }
+                } else if (e.key === 's' || e.key === 'S') {
+                    e.preventDefault();
+                    if (!document.getElementById('stand-btn').disabled) {
+                        this.standBlackjack();
+                    }
+                }
+            }
+        });
     }
 
     createDeck() {
@@ -615,8 +836,18 @@ class FakeCasino {
                 'diamond-cards': 'background: linear-gradient(135deg, #E8E8E8, #B8B8B8); border: 2px solid #A0A0A0; box-shadow: 0 0 15px rgba(200, 200, 200, 0.5);',
                 'royal-cards': 'background: linear-gradient(135deg, #4B0082, #8A2BE2); border: 2px solid #9400D3; box-shadow: 0 0 15px rgba(138, 43, 226, 0.5); color: #FFD700 !important;',
                 'neon-cards': 'background: linear-gradient(135deg, #ff00ff, #00ffff); border: 2px solid #ff0080; box-shadow: 0 0 20px rgba(255, 0, 255, 0.7); color: #ffffff !important; animation: neonPulse 2s ease-in-out infinite;',
-                'holographic-cards': 'background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57); border: 2px solid #ffffff; box-shadow: 0 0 25px rgba(255, 255, 255, 0.8); animation: holographicShift 3s ease-in-out infinite;',
-                'dragon-cards': 'background: linear-gradient(135deg, #8B0000, #FF4500, #FF6347); border: 2px solid #FFD700; box-shadow: 0 0 20px rgba(255, 69, 0, 0.8); color: #FFD700 !important; animation: dragonFlame 2s ease-in-out infinite;'
+                'aurora-cards': 'background: linear-gradient(135deg, #00c9ff, #92fe9d, #ff9a9e, #a8edea, #fbc2eb, #a6c1ee); border: 2px solid #ffffff; box-shadow: 0 0 25px rgba(255, 255, 255, 0.8); animation: auroraShift 3s ease-in-out infinite; color: #ffffff !important;',
+                'dragon-cards': 'background: linear-gradient(135deg, #8B0000, #FF4500, #FF6347); border: 2px solid #FFD700; box-shadow: 0 0 20px rgba(255, 69, 0, 0.8); color: #FFD700 !important; animation: dragonFlame 2s ease-in-out infinite;',
+                'ice-cards': 'background: linear-gradient(135deg, #87CEEB, #4682B4, #B0E0E6); border: 2px solid #00BFFF; box-shadow: 0 0 20px rgba(135, 206, 235, 0.7); animation: iceShimmer 3s ease-in-out infinite;',
+                'fire-cards': 'background: linear-gradient(135deg, #FF4500, #FF6347, #FF8C00); border: 2px solid #FF0000; box-shadow: 0 0 25px rgba(255, 69, 0, 0.8); animation: fireFlicker 1.5s ease-in-out infinite;',
+                'cosmic-cards': 'background: linear-gradient(135deg, #0c0c0c, #1a1a2e, #16213e, #000428); border: 2px solid #4169E1; box-shadow: 0 0 30px rgba(65, 105, 225, 0.6); color: #ffffff !important; animation: cosmicGlow 4s ease-in-out infinite;',
+                'electric-cards': 'background: linear-gradient(135deg, #00FFFF, #0080FF, #4169E1); border: 2px solid #FFFF00; box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); animation: electricPulse 1s ease-in-out infinite;',
+                'shadow-cards': 'background: linear-gradient(135deg, #2F2F2F, #1C1C1C, #000000); border: 2px solid #696969; box-shadow: 0 0 15px rgba(0, 0, 0, 0.9); color: #C0C0C0 !important; animation: shadowWave 3s ease-in-out infinite;',
+                'rainbow-cards': 'background: linear-gradient(135deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff80, #0080ff, #8000ff, #ff0080); border: 2px solid #ffffff; box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); animation: rainbowShift 2s ease-in-out infinite;',
+                'sunset-cards': 'background: linear-gradient(135deg, #ff7e5f, #feb47b, #ff6b6b, #feca57); border: 2px solid #ff8c42; box-shadow: 0 0 20px rgba(255, 140, 66, 0.8); animation: sunsetShift 3s ease-in-out infinite;',
+                'ocean-cards': 'background: linear-gradient(135deg, #667db6, #0082c8, #0052d4, #4fb3d9); border: 2px solid #00bfff; box-shadow: 0 0 20px rgba(0, 191, 255, 0.8); animation: oceanShift 4s ease-in-out infinite;',
+                'galaxy-cards': 'background: linear-gradient(135deg, #2c1810, #8b4513, #1e0a3c, #4b0082, #0f0f23); border: 2px solid #9370db; box-shadow: 0 0 25px rgba(147, 112, 219, 0.8); animation: galaxyShift 5s ease-in-out infinite; color: #ffffff !important;',
+                'prism-cards': 'background: linear-gradient(135deg, #ff9a9e, #fecfef, #fecfef, #a8edea, #d299c2, #fed6e3); border: 2px solid #ffffff; box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); animation: prismShift 2.5s ease-in-out infinite;'
             };
             
             if (cardStyles[this.activeCosmetics.cardSleeve]) {
@@ -633,16 +864,62 @@ class FakeCasino {
                     0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 255, 0.7); }
                     50% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.9), 0 0 40px rgba(255, 0, 255, 0.7); }
                 }
-                @keyframes holographicShift {
-                    0% { background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57); }
-                    25% { background: linear-gradient(135deg, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff6b6b); }
-                    50% { background: linear-gradient(135deg, #45b7d1, #96ceb4, #feca57, #ff6b6b, #4ecdc4); }
-                    75% { background: linear-gradient(135deg, #96ceb4, #feca57, #ff6b6b, #4ecdc4, #45b7d1); }
-                    100% { background: linear-gradient(135deg, #feca57, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4); }
+                @keyframes auroraShift {
+                    0% { filter: hue-rotate(0deg) brightness(1); }
+                    50% { filter: hue-rotate(180deg) brightness(1.1); }
+                    100% { filter: hue-rotate(360deg) brightness(1); }
                 }
                 @keyframes dragonFlame {
                     0%, 100% { box-shadow: 0 0 20px rgba(255, 69, 0, 0.8); }
                     50% { box-shadow: 0 0 35px rgba(255, 215, 0, 1), 0 0 45px rgba(255, 69, 0, 0.8); }
+                }
+                @keyframes iceShimmer {
+                    0%, 100% { box-shadow: 0 0 20px rgba(135, 206, 235, 0.7); transform: scale(1); }
+                    50% { box-shadow: 0 0 30px rgba(173, 216, 230, 1); transform: scale(1.02); }
+                }
+                @keyframes fireFlicker {
+                    0%, 100% { box-shadow: 0 0 25px rgba(255, 69, 0, 0.8); }
+                    25% { box-shadow: 0 0 35px rgba(255, 0, 0, 1); }
+                    75% { box-shadow: 0 0 30px rgba(255, 140, 0, 0.9); }
+                }
+                @keyframes cosmicGlow {
+                    0%, 100% { box-shadow: 0 0 30px rgba(65, 105, 225, 0.6); }
+                    50% { box-shadow: 0 0 50px rgba(138, 43, 226, 0.8), 0 0 70px rgba(65, 105, 225, 0.6); }
+                }
+                @keyframes electricPulse {
+                    0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); }
+                    50% { box-shadow: 0 0 40px rgba(255, 255, 0, 1), 0 0 60px rgba(0, 255, 255, 0.8); }
+                }
+                @keyframes shadowWave {
+                    0%, 100% { box-shadow: 0 0 15px rgba(0, 0, 0, 0.9); opacity: 0.8; }
+                    50% { box-shadow: 0 0 25px rgba(105, 105, 105, 0.7); opacity: 1; }
+                }
+                @keyframes rainbowShift {
+                    0% { filter: hue-rotate(0deg); }
+                    100% { filter: hue-rotate(360deg); }
+                }
+                @keyframes sunsetShift {
+                    0% { filter: hue-rotate(0deg) saturate(1); }
+                    50% { filter: hue-rotate(30deg) saturate(1.2); }
+                    100% { filter: hue-rotate(0deg) saturate(1); }
+                }
+                @keyframes oceanShift {
+                    0% { filter: hue-rotate(0deg) brightness(1); }
+                    33% { filter: hue-rotate(15deg) brightness(1.1); }
+                    66% { filter: hue-rotate(-15deg) brightness(0.9); }
+                    100% { filter: hue-rotate(0deg) brightness(1); }
+                }
+                @keyframes galaxyShift {
+                    0% { filter: hue-rotate(0deg) contrast(1); }
+                    25% { filter: hue-rotate(90deg) contrast(1.1); }
+                    50% { filter: hue-rotate(180deg) contrast(1.2); }
+                    75% { filter: hue-rotate(270deg) contrast(1.1); }
+                    100% { filter: hue-rotate(360deg) contrast(1); }
+                }
+                @keyframes prismShift {
+                    0% { filter: hue-rotate(0deg) saturate(1); }
+                    50% { filter: hue-rotate(180deg) saturate(1.3); }
+                    100% { filter: hue-rotate(360deg) saturate(1); }
                 }
             `;
             document.head.appendChild(style);
@@ -687,9 +964,9 @@ class FakeCasino {
         const playerValue = this.calculateHandValue(this.games.blackjack.playerHand);
         if (playerValue === 21) {
             this.showMessage('🎉 Blackjack!');
-            this.endBlackjack();
+            setTimeout(() => this.endBlackjack(), 1000);
         } else {
-            this.showMessage(`🃏 Cards dealt! Your hand: ${playerValue}`);
+            this.showMessage(`🃏 Your hand: ${playerValue} - Hit or Stand?`);
         }
     }
 
@@ -701,25 +978,29 @@ class FakeCasino {
         
         const playerValue = this.calculateHandValue(this.games.blackjack.playerHand);
         if (playerValue > 21) {
+            this.addBustAnimation();
             this.showMessage(`💥 Bust! You went over with ${playerValue}`);
-            this.endBlackjack();
+            setTimeout(() => this.endBlackjack(), 1000);
         } else if (playerValue === 21) {
+            this.addPerfectAnimation();
             this.showMessage('🎯 Perfect 21!');
-            this.standBlackjack();
+            setTimeout(() => this.standBlackjack(), 800);
         } else {
-            this.showMessage(`🃏 Hit! Your hand: ${playerValue}`);
+            this.showMessage(`🃏 Your hand: ${playerValue} - Hit or Stand?`);
         }
     }
 
     standBlackjack() {
         if (!this.games.blackjack.active) return;
         
+        this.showMessage('🏁 You stand - Dealer plays...');
+        
         // Dealer plays
         while (this.calculateHandValue(this.games.blackjack.dealerHand) < 17) {
             this.games.blackjack.dealerHand.push(this.games.blackjack.deck.pop());
         }
         
-        this.endBlackjack();
+        setTimeout(() => this.endBlackjack(), 500);
     }
 
     endBlackjack() {
@@ -758,6 +1039,41 @@ class FakeCasino {
         document.getElementById('hit-btn').disabled = true;
         document.getElementById('stand-btn').disabled = true;
         document.getElementById('deal-btn').disabled = false;
+        
+        // Add win/lose effects
+        if (winAmount > 0 && playerValue <= 21) {
+            this.addWinAnimation();
+        } else if (playerValue > 21) {
+            // Bust animation already added in hitBlackjack
+        }
+        
+        // Auto-deal option for faster gameplay (after 3 seconds)
+        setTimeout(() => {
+            if (!this.games.blackjack.active && document.getElementById('blackjack-game').style.display !== 'none') {
+                this.showMessage(`${message} | Press ENTER or SPACE for next round`);
+            }
+        }, 2000);
+    }
+
+    addWinAnimation() {
+        // Create win celebration effect
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => {
+                const confetti = document.createElement('div');
+                confetti.textContent = ['🎉', '💰', '🎊', '⭐'][Math.floor(Math.random() * 4)];
+                confetti.style.cssText = `
+                    position: fixed;
+                    top: ${Math.random() * 100}vh;
+                    left: ${Math.random() * 100}vw;
+                    font-size: 24px;
+                    pointer-events: none;
+                    z-index: 1000;
+                    animation: confettiDrop 2s ease-out forwards;
+                `;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 2000);
+            }, i * 50);
+        }
     }
 
     updateBlackjackDisplay(showDealerCards = false) {
@@ -773,7 +1089,7 @@ class FakeCasino {
         // Update dealer hand
         dealerHandEl.innerHTML = '';
         this.games.blackjack.dealerHand.forEach((card, index) => {
-            const isHidden = index === 0 && this.games.blackjack.active && !showDealerCards;
+            const isHidden = index === 1 && this.games.blackjack.active && !showDealerCards;
             dealerHandEl.appendChild(this.createCardElement(card, isHidden));
         });
         
@@ -781,7 +1097,7 @@ class FakeCasino {
         document.getElementById('player-total').textContent = this.calculateHandValue(this.games.blackjack.playerHand);
         
         if (this.games.blackjack.active && !showDealerCards) {
-            document.getElementById('dealer-total').textContent = this.getCardValue(this.games.blackjack.dealerHand[1]);
+            document.getElementById('dealer-total').textContent = this.getCardValue(this.games.blackjack.dealerHand[0]);
         } else {
             document.getElementById('dealer-total').textContent = this.calculateHandValue(this.games.blackjack.dealerHand);
         }
@@ -1580,7 +1896,10 @@ class FakeCasino {
             'effects': 'effect',
             'plinko': 'plinko',
             'planes': 'plane',
-            'trails': 'trail'
+            'trails': 'trail',
+            'cursors': 'cursor',
+            'particles': 'particle',
+            'themes': 'theme'
         };
         
         return this.activeCosmetics[categoryMap[category]] === itemId;
@@ -1596,7 +1915,10 @@ class FakeCasino {
             'effects': 'effect',
             'plinko': 'plinko',
             'planes': 'plane',
-            'trails': 'trail'
+            'trails': 'trail',
+            'cursors': 'cursor',
+            'particles': 'particle',
+            'themes': 'theme'
         };
         
         const cosmeticType = categoryMap[category];
@@ -1605,6 +1927,15 @@ class FakeCasino {
         if (this.activeCosmetics[cosmeticType] === itemId) {
             this.activeCosmetics[cosmeticType] = null;
             this.showMessage(`🎨 Unequipped ${itemId.replace('-', ' ')}!`);
+            
+            // Remove cosmetic immediately
+            if (cosmeticType === 'cursor') {
+                document.body.style.cursor = 'default';
+            } else if (cosmeticType === 'particle') {
+                this.removeParticleEffects();
+            } else if (cosmeticType === 'theme') {
+                this.removeTheme();
+            }
         } else {
             this.activeCosmetics[cosmeticType] = itemId;
             this.showMessage(`🎨 Equipped ${itemId.replace('-', ' ')}!`);
@@ -1614,6 +1945,12 @@ class FakeCasino {
                 this.applyBackground(itemId);
             } else if (cosmeticType === 'effect') {
                 this.applyEffect(itemId);
+            } else if (cosmeticType === 'cursor') {
+                this.applyCursor(itemId);
+            } else if (cosmeticType === 'particle') {
+                this.createParticleEffect(itemId);
+            } else if (cosmeticType === 'theme') {
+                this.applyTheme(itemId);
             }
         }
         
@@ -1628,8 +1965,18 @@ class FakeCasino {
                 { id: 'diamond-cards', name: 'Diamond Cards', icon: '💎', price: 250 },
                 { id: 'royal-cards', name: 'Royal Cards', icon: '👑', price: 500 },
                 { id: 'neon-cards', name: 'Neon Cards', icon: '💫', price: 350 },
-                { id: 'holographic-cards', name: 'Holographic Cards', icon: '🔮', price: 750 },
-                { id: 'dragon-cards', name: 'Dragon Cards', icon: '🐉', price: 1000 }
+                { id: 'aurora-cards', name: 'Aurora Cards', icon: '🌠', price: 750 },
+                { id: 'dragon-cards', name: 'Dragon Cards', icon: '🐉', price: 1000 },
+                { id: 'ice-cards', name: 'Ice Crystal Cards', icon: '🧊', price: 400 },
+                { id: 'fire-cards', name: 'Flaming Cards', icon: '🔥', price: 600 },
+                { id: 'cosmic-cards', name: 'Cosmic Cards', icon: '🌌', price: 800 },
+                { id: 'electric-cards', name: 'Electric Cards', icon: '⚡', price: 550 },
+                { id: 'shadow-cards', name: 'Shadow Cards', icon: '🌑', price: 650 },
+                { id: 'rainbow-cards', name: 'Rainbow Cards', icon: '🌈', price: 700 },
+                { id: 'sunset-cards', name: 'Sunset Cards', icon: '🌅', price: 450 },
+                { id: 'ocean-cards', name: 'Ocean Wave Cards', icon: '🌊', price: 500 },
+                { id: 'galaxy-cards', name: 'Galaxy Cards', icon: '⭐', price: 850 },
+                { id: 'prism-cards', name: 'Prism Cards', icon: '🔮', price: 600 }
             ],
             backgrounds: [
                 { id: 'space-bg', name: 'Space Theme', icon: '🌌', price: 150 },
@@ -1638,7 +1985,12 @@ class FakeCasino {
                 { id: 'neon-bg', name: 'Neon City', icon: '🏙️', price: 400 },
                 { id: 'galaxy-bg', name: 'Galaxy', icon: '🌌', price: 500 },
                 { id: 'matrix-bg', name: 'Matrix', icon: '💚', price: 600 },
-                { id: 'sunset-bg', name: 'Sunset Valley', icon: '🌅', price: 350 }
+                { id: 'sunset-bg', name: 'Sunset Valley', icon: '🌅', price: 350 },
+                { id: 'aurora-bg', name: 'Aurora Borealis', icon: '🌠', price: 450 },
+                { id: 'volcanic-bg', name: 'Volcanic Lava', icon: '🌋', price: 550 },
+                { id: 'cyberpunk-bg', name: 'Cyberpunk City', icon: '🤖', price: 650 },
+                { id: 'underwater-bg', name: 'Deep Sea', icon: '🐠', price: 400 },
+                { id: 'crystal-bg', name: 'Crystal Cave', icon: '💎', price: 500 }
             ],
             effects: [
                 { id: 'sparkle-fx', name: 'Sparkle Effect', icon: '✨', price: 75 },
@@ -1648,7 +2000,11 @@ class FakeCasino {
                 { id: 'confetti-fx', name: 'Confetti Blast', icon: '🎊', price: 250 },
                 { id: 'fireworks-fx', name: 'Fireworks', icon: '🎆', price: 400 },
                 { id: 'magic-fx', name: 'Magic Aura', icon: '🔮', price: 300 },
-                { id: 'coins-fx', name: 'Coin Rain', icon: '🪙', price: 350 }
+                { id: 'coins-fx', name: 'Coin Rain', icon: '🪙', price: 350 },
+                { id: 'stars-fx', name: 'Shooting Stars', icon: '🌟', price: 300 },
+                { id: 'bubble-fx', name: 'Bubble Float', icon: '💭', price: 200 },
+                { id: 'hearts-fx', name: 'Floating Hearts', icon: '💖', price: 250 },
+                { id: 'thunder-fx', name: 'Thunder Storm', icon: '🌩️', price: 450 }
             ],
             plinko: [
                 { id: 'gold-ball', name: 'Golden Ball', icon: '🟡', price: 100 },
@@ -1673,6 +2029,30 @@ class FakeCasino {
                 { id: 'fire-trail', name: 'Fire Trail', icon: '🔥', price: 250 },
                 { id: 'electric-trail', name: 'Electric Trail', icon: '⚡', price: 350 },
                 { id: 'stardust-trail', name: 'Stardust Trail', icon: '⭐', price: 400 }
+            ],
+            cursors: [
+                { id: 'golden-cursor', name: 'Golden Pointer', icon: '👆', price: 150 },
+                { id: 'fire-cursor', name: 'Fire Cursor', icon: '🔥', price: 200 },
+                { id: 'diamond-cursor', name: 'Diamond Cursor', icon: '💎', price: 250 },
+                { id: 'magic-cursor', name: 'Magic Wand', icon: '🪄', price: 300 },
+                { id: 'lightning-cursor', name: 'Lightning Bolt', icon: '⚡', price: 350 },
+                { id: 'star-cursor', name: 'Star Cursor', icon: '⭐', price: 400 }
+            ],
+            particles: [
+                { id: 'floating-coins', name: 'Floating Coins', icon: '🪙', price: 250 },
+                { id: 'magic-sparkles', name: 'Magic Sparkles', icon: '✨', price: 300 },
+                { id: 'floating-cards', name: 'Floating Cards', icon: '🃏', price: 350 },
+                { id: 'dice-particles', name: 'Rolling Dice', icon: '🎲', price: 400 },
+                { id: 'gem-shower', name: 'Gem Shower', icon: '💎', price: 450 },
+                { id: 'phoenix-feathers', name: 'Phoenix Feathers', icon: '🪶', price: 500 }
+            ],
+            themes: [
+                { id: 'cyberpunk-theme', name: 'Cyberpunk 2077', icon: '🤖', price: 800 },
+                { id: 'royal-theme', name: 'Royal Palace', icon: '👑', price: 750 },
+                { id: 'neon-vegas', name: 'Neon Vegas', icon: '🎰', price: 900 },
+                { id: 'space-station', name: 'Space Station', icon: '🚀', price: 850 },
+                { id: 'underwater', name: 'Underwater', icon: '🐠', price: 700 },
+                { id: 'dragon-lair', name: 'Dragon\'s Lair', icon: '🐉', price: 1000 }
             ]
         };
 
