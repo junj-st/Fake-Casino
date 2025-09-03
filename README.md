@@ -20,7 +20,7 @@ work in progress<br />
 
 ### 🎯 **Plinko** 
 - Physics-based ball dropping game
-- Multiple multiplier slots (1x to 100x)
+- Multiple multiplier slots (0.25x to 100x)
 - Realistic ball bouncing with collision detection
 - Customizable ball skins
 
