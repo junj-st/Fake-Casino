@@ -1349,7 +1349,7 @@ class FakeCasino {
         const slotWidth = document.getElementById('plinko-board').offsetWidth / slots.length;
         const selectedIndex = Math.max(0, Math.min(slots.length - 1, Math.floor(finalX / slotWidth)));
         
-        const multipliers = Array.from(slots).map(slot => parseInt(slot.dataset.multiplier));
+        const multipliers = Array.from(slots).map(slot => parseFloat(slot.dataset.multiplier));
         const multiplier = multipliers[selectedIndex];
         const winAmount = betAmount * multiplier;
         

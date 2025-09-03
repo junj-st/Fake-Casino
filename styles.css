@@ -627,9 +627,20 @@ body {
     animation: goldGlow 2s ease-in-out infinite alternate;
 }
 
+.slot[data-multiplier="0.25"], .slot[data-multiplier="0.5"] {
+    background: linear-gradient(135deg, #FF4444, #CC0000);
+    border-color: #FF6666;
+    animation: lossGlow 2s ease-in-out infinite alternate;
+}
+
 @keyframes goldGlow {
     0% { box-shadow: 0 0 5px #FFD700; }
     100% { box-shadow: 0 0 20px #FFD700, 0 0 30px #FFA500; }
+}
+
+@keyframes lossGlow {
+    0% { box-shadow: 0 0 5px #FF4444; }
+    100% { box-shadow: 0 0 15px #FF4444, 0 0 25px #CC0000; }
 }
 
 .plinko-stats {
