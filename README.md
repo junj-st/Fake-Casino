@@ -21,19 +21,16 @@ work in progress<br />
 ### 🎯 **Plinko** 
 - Physics-based ball dropping game
 - Multiple multiplier slots (0.25x to 100x)
-- Realistic ball bouncing with collision detection
 - Customizable ball skins
 
 ### ✈️ **Aviator**
 - High-risk multiplier game
 - Cash out before the plane crashes
 - Customizable aircraft skins
-- Real-time multiplier tracking
 
 ### 🎡 **Roulette**
 - Classic casino roulette wheel
 - Multiple betting options (red/black, even/odd, high/low)
-- Animated spinning wheel
 
 ### 💣 **Minesweeper**
 - Casino-style gem hunting game
