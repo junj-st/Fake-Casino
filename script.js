@@ -1136,7 +1136,7 @@ class FakeCasino {
             for (let row = 0; row < pegRows; row++) {
                 const pegsInRow = 3 + row; // Start with 3 pegs, increase each row
                 const actualPegs = Math.min(pegsInRow, maxPegs);
-                const totalWidth = boardWidth * 0.7; // Use 70% of board width
+                const totalWidth = boardWidth * 0.9; // Use 90% of board width (increased from 70%)
                 const startX = (boardWidth - totalWidth) / 2; // Center horizontally
                 const spacing = actualPegs > 1 ? totalWidth / (actualPegs - 1) : 0;
                 
@@ -1269,7 +1269,7 @@ class FakeCasino {
         
         let x = board.offsetWidth / 2; // Start from center
         let y = 10;
-        let vx = (Math.random() - 0.5) * 1; // Reduce initial horizontal velocity
+        let vx = (Math.random() - 0.5) * 2; // Increase initial horizontal velocity for better spread
         let vy = 0;
         const gravity = 0.25;
         const bounce = 0.6;
@@ -1296,7 +1296,7 @@ class FakeCasino {
                     const angle = Math.atan2(y - pegY, x - pegX);
                     const speed = Math.sqrt(vx ** 2 + vy ** 2) * bounce;
                     
-                    vx = Math.cos(angle) * speed + (Math.random() - 0.5) * 1;
+                    vx = Math.cos(angle) * speed + (Math.random() - 0.5) * 2; // Increased randomness from 1 to 2
                     vy = Math.sin(angle) * speed * 0.6;
                     
                     // Separate the ball from the peg
@@ -1317,8 +1317,8 @@ class FakeCasino {
             // Apply friction
             vx *= friction;
             
-            // Boundary collision with some padding
-            const padding = 15;
+            // Boundary collision with reduced padding
+            const padding = 5; // Reduced from 15 to allow edge access
             if (x < padding) {
                 x = padding;
                 vx = Math.abs(vx) * 0.8;
