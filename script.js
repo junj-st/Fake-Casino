@@ -832,22 +832,39 @@ class FakeCasino {
     applyCardCosmetic(cardElement) {
         if (this.activeCosmetics.cardSleeve) {
             const cardStyles = {
+                // Common Cards
+                'basic-cards': 'background: linear-gradient(135deg, #f5f5f5, #e8e8e8); border: 2px solid #cccccc; box-shadow: 0 0 5px rgba(200, 200, 200, 0.3);',
+                'red-cards': 'background: linear-gradient(135deg, #ffebee, #ffcdd2); border: 2px solid #f44336; box-shadow: 0 0 10px rgba(244, 67, 54, 0.4);',
+                'blue-cards': 'background: linear-gradient(135deg, #e3f2fd, #bbdefb); border: 2px solid #2196f3; box-shadow: 0 0 10px rgba(33, 150, 243, 0.4);',
+                
+                // Uncommon Cards
                 'gold-cards': 'background: linear-gradient(135deg, #FFD700, #FFA500); border: 2px solid #FF8C00; box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);',
-                'diamond-cards': 'background: linear-gradient(135deg, #E8E8E8, #B8B8B8); border: 2px solid #A0A0A0; box-shadow: 0 0 15px rgba(200, 200, 200, 0.5);',
-                'royal-cards': 'background: linear-gradient(135deg, #4B0082, #8A2BE2); border: 2px solid #9400D3; box-shadow: 0 0 15px rgba(138, 43, 226, 0.5); color: #FFD700 !important;',
+                'silver-cards': 'background: linear-gradient(135deg, #e8e8e8, #c0c0c0); border: 2px solid #a0a0a0; box-shadow: 0 0 15px rgba(192, 192, 192, 0.5);',
                 'neon-cards': 'background: linear-gradient(135deg, #ff00ff, #00ffff); border: 2px solid #ff0080; box-shadow: 0 0 20px rgba(255, 0, 255, 0.7); color: #ffffff !important; animation: neonPulse 2s ease-in-out infinite;',
-                'aurora-cards': 'background: linear-gradient(135deg, #00c9ff, #92fe9d, #ff9a9e, #a8edea, #fbc2eb, #a6c1ee); border: 2px solid #ffffff; box-shadow: 0 0 25px rgba(255, 255, 255, 0.8); animation: auroraShift 3s ease-in-out infinite; color: #ffffff !important;',
-                'dragon-cards': 'background: linear-gradient(135deg, #8B0000, #FF4500, #FF6347); border: 2px solid #FFD700; box-shadow: 0 0 20px rgba(255, 69, 0, 0.8); color: #FFD700 !important; animation: dragonFlame 2s ease-in-out infinite;',
+                
+                // Rare Cards
+                'diamond-cards': 'background: linear-gradient(135deg, #E8E8E8, #B8B8B8); border: 2px solid #A0A0A0; box-shadow: 0 0 15px rgba(200, 200, 200, 0.5);',
                 'ice-cards': 'background: linear-gradient(135deg, #87CEEB, #4682B4, #B0E0E6); border: 2px solid #00BFFF; box-shadow: 0 0 20px rgba(135, 206, 235, 0.7); animation: iceShimmer 3s ease-in-out infinite;',
                 'fire-cards': 'background: linear-gradient(135deg, #FF4500, #FF6347, #FF8C00); border: 2px solid #FF0000; box-shadow: 0 0 25px rgba(255, 69, 0, 0.8); animation: fireFlicker 1.5s ease-in-out infinite;',
-                'cosmic-cards': 'background: linear-gradient(135deg, #0c0c0c, #1a1a2e, #16213e, #000428); border: 2px solid #4169E1; box-shadow: 0 0 30px rgba(65, 105, 225, 0.6); color: #ffffff !important; animation: cosmicGlow 4s ease-in-out infinite;',
-                'electric-cards': 'background: linear-gradient(135deg, #00FFFF, #0080FF, #4169E1); border: 2px solid #FFFF00; box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); animation: electricPulse 1s ease-in-out infinite;',
-                'shadow-cards': 'background: linear-gradient(135deg, #2F2F2F, #1C1C1C, #000000); border: 2px solid #696969; box-shadow: 0 0 15px rgba(0, 0, 0, 0.9); color: #C0C0C0 !important; animation: shadowWave 3s ease-in-out infinite;',
-                'rainbow-cards': 'background: linear-gradient(135deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff80, #0080ff, #8000ff, #ff0080); border: 2px solid #ffffff; box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); animation: rainbowShift 2s ease-in-out infinite;',
                 'sunset-cards': 'background: linear-gradient(135deg, #ff7e5f, #feb47b, #ff6b6b, #feca57); border: 2px solid #ff8c42; box-shadow: 0 0 20px rgba(255, 140, 66, 0.8); animation: sunsetShift 3s ease-in-out infinite;',
+                
+                // Epic Cards
+                'royal-cards': 'background: linear-gradient(135deg, #4B0082, #8A2BE2); border: 2px solid #9400D3; box-shadow: 0 0 15px rgba(138, 43, 226, 0.5); color: #FFD700 !important;',
+                'aurora-cards': 'background: linear-gradient(135deg, #00c9ff, #92fe9d, #ff9a9e, #a8edea, #fbc2eb, #a6c1ee); border: 2px solid #ffffff; box-shadow: 0 0 25px rgba(255, 255, 255, 0.8); animation: auroraShift 3s ease-in-out infinite; color: #ffffff !important;',
+                'electric-cards': 'background: linear-gradient(135deg, #00FFFF, #0080FF, #4169E1); border: 2px solid #FFFF00; box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); animation: electricPulse 1s ease-in-out infinite;',
+                'cosmic-cards': 'background: linear-gradient(135deg, #0c0c0c, #1a1a2e, #16213e, #000428); border: 2px solid #4169E1; box-shadow: 0 0 30px rgba(65, 105, 225, 0.6); color: #ffffff !important; animation: cosmicGlow 4s ease-in-out infinite;',
+                'shadow-cards': 'background: linear-gradient(135deg, #2F2F2F, #1C1C1C, #000000); border: 2px solid #696969; box-shadow: 0 0 15px rgba(0, 0, 0, 0.9); color: #C0C0C0 !important; animation: shadowWave 3s ease-in-out infinite;',
+                
+                // Legendary Cards
+                'dragon-cards': 'background: linear-gradient(135deg, #8B0000, #FF4500, #FF6347); border: 2px solid #FFD700; box-shadow: 0 0 20px rgba(255, 69, 0, 0.8); color: #FFD700 !important; animation: dragonFlame 2s ease-in-out infinite;',
+                'rainbow-cards': 'background: linear-gradient(135deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff80, #0080ff, #8000ff, #ff0080); border: 2px solid #ffffff; box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); animation: rainbowShift 2s ease-in-out infinite;',
                 'ocean-cards': 'background: linear-gradient(135deg, #667db6, #0082c8, #0052d4, #4fb3d9); border: 2px solid #00bfff; box-shadow: 0 0 20px rgba(0, 191, 255, 0.8); animation: oceanShift 4s ease-in-out infinite;',
                 'galaxy-cards': 'background: linear-gradient(135deg, #2c1810, #8b4513, #1e0a3c, #4b0082, #0f0f23); border: 2px solid #9370db; box-shadow: 0 0 25px rgba(147, 112, 219, 0.8); animation: galaxyShift 5s ease-in-out infinite; color: #ffffff !important;',
-                'prism-cards': 'background: linear-gradient(135deg, #ff9a9e, #fecfef, #fecfef, #a8edea, #d299c2, #fed6e3); border: 2px solid #ffffff; box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); animation: prismShift 2.5s ease-in-out infinite;'
+                
+                // Exotic Cards
+                'prism-cards': 'background: linear-gradient(135deg, #ff9a9e, #fecfef, #fecfef, #a8edea, #d299c2, #fed6e3); border: 2px solid #ffffff; box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); animation: prismShift 2.5s ease-in-out infinite;',
+                'void-cards': 'background: linear-gradient(135deg, #000000, #1a1a1a, #2d2d30, #000000); border: 2px solid #8b008b; box-shadow: 0 0 30px rgba(139, 0, 139, 0.8); color: #ffffff !important; animation: voidPulse 2s ease-in-out infinite;',
+                'celestial-cards': 'background: linear-gradient(135deg, #0f3460, #16537e, #1e6091, #29648a); border: 2px solid #ffd700; box-shadow: 0 0 35px rgba(255, 215, 0, 0.8); color: #ffd700 !important; animation: celestialGlow 3s ease-in-out infinite;'
             };
             
             if (cardStyles[this.activeCosmetics.cardSleeve]) {
@@ -1203,13 +1220,31 @@ class FakeCasino {
         
         if (this.activeCosmetics.plinko) {
             const ballStyles = {
+                // Common Balls
+                'red-ball': 'background: radial-gradient(circle at 30% 30%, #FF6B6B, #FF5252, #E53935); box-shadow: 0 0 15px #FF5252; border: 2px solid #E53935;',
+                'blue-ball': 'background: radial-gradient(circle at 30% 30%, #42A5F5, #2196F3, #1976D2); box-shadow: 0 0 15px #2196F3; border: 2px solid #1976D2;',
+                'green-ball': 'background: radial-gradient(circle at 30% 30%, #66BB6A, #4CAF50, #388E3C); box-shadow: 0 0 15px #4CAF50; border: 2px solid #388E3C;',
+                
+                // Uncommon Balls
                 'gold-ball': 'background: radial-gradient(circle at 30% 30%, #FFD700, #FFA500, #FF8C00); box-shadow: 0 0 20px #FFD700; border: 2px solid #FF8C00;',
+                'silver-ball': 'background: radial-gradient(circle at 30% 30%, #E8E8E8, #C0C0C0, #A0A0A0); box-shadow: 0 0 18px #C0C0C0; border: 2px solid #A0A0A0;',
+                
+                // Rare Balls
                 'fire-ball': 'background: radial-gradient(circle at 30% 30%, #FF6B35, #F12711, #A23400); box-shadow: 0 0 25px #F12711; border: 2px solid #A23400; animation: fireBall 0.5s ease-in-out infinite alternate;',
-                'diamond-ball': 'background: radial-gradient(circle at 30% 30%, #E8E8E8, #B8B8B8, #A0A0A0); box-shadow: 0 0 30px #E8E8E8; border: 2px solid #A0A0A0; animation: diamondShine 1s ease-in-out infinite;',
                 'ice-ball': 'background: radial-gradient(circle at 30% 30%, #B8E6FF, #87CEEB, #4682B4); box-shadow: 0 0 25px #87CEEB; border: 2px solid #4682B4; animation: iceChill 2s ease-in-out infinite;',
-                'rainbow-ball': 'background: conic-gradient(from 0deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080); box-shadow: 0 0 30px #ffffff; border: 2px solid #ffffff; animation: rainbowSpin 3s linear infinite;',
                 'electric-ball': 'background: radial-gradient(circle at 30% 30%, #FFFF00, #00FFFF, #8A2BE2); box-shadow: 0 0 35px #FFFF00; border: 2px solid #8A2BE2; animation: electricPulse 0.3s ease-in-out infinite alternate;',
-                'plasma-ball': 'background: radial-gradient(circle at 30% 30%, #8A2BE2, #FF1493, #00CED1); box-shadow: 0 0 40px #8A2BE2; border: 2px solid #FF1493; animation: plasmaFlow 1.5s ease-in-out infinite;'
+                
+                // Epic Balls
+                'diamond-ball': 'background: radial-gradient(circle at 30% 30%, #E8E8E8, #B8B8B8, #A0A0A0); box-shadow: 0 0 30px #E8E8E8; border: 2px solid #A0A0A0; animation: diamondShine 1s ease-in-out infinite;',
+                'rainbow-ball': 'background: conic-gradient(from 0deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080); box-shadow: 0 0 30px #ffffff; border: 2px solid #ffffff; animation: rainbowSpin 3s linear infinite;',
+                
+                // Legendary Balls
+                'plasma-ball': 'background: radial-gradient(circle at 30% 30%, #8A2BE2, #FF1493, #00CED1); box-shadow: 0 0 40px #8A2BE2; border: 2px solid #FF1493; animation: plasmaFlow 1.5s ease-in-out infinite;',
+                'dragon-ball': 'background: radial-gradient(circle at 30% 30%, #FF4500, #FF6347, #8B0000); box-shadow: 0 0 35px #FF4500; border: 2px solid #8B0000; animation: dragonPulse 1s ease-in-out infinite alternate;',
+                
+                // Exotic Balls
+                'void-ball': 'background: radial-gradient(circle at 30% 30%, #1a1a1a, #000000, #2d2d30); box-shadow: 0 0 45px #8b008b; border: 2px solid #8b008b; animation: voidDistort 2s ease-in-out infinite;',
+                'cosmic-ball': 'background: radial-gradient(circle at 30% 30%, #0f0f23, #1e0a3c, #4b0082); box-shadow: 0 0 50px #9370db; border: 2px solid #9370db; animation: cosmicSwirl 3s linear infinite;'
             };
             
             if (ballStyles[this.activeCosmetics.plinko]) {
@@ -1859,7 +1894,8 @@ class FakeCasino {
             const isActive = this.isItemActive(item.id, category);
             
             return `
-                <div class="shop-item">
+                <div class="shop-item rarity-${item.rarity}">
+                    <div class="rarity-badge">${item.rarity.toUpperCase()}</div>
                     <div class="item-icon">${item.icon}</div>
                     <div class="item-name">${item.name}</div>
                     <div class="item-price">$${item.price}</div>
@@ -1961,98 +1997,251 @@ class FakeCasino {
     getShopItems(category) {
         const items = {
             cards: [
-                { id: 'gold-cards', name: 'Gold Cards', icon: '🃏', price: 100 },
-                { id: 'diamond-cards', name: 'Diamond Cards', icon: '💎', price: 250 },
-                { id: 'royal-cards', name: 'Royal Cards', icon: '👑', price: 500 },
-                { id: 'neon-cards', name: 'Neon Cards', icon: '💫', price: 350 },
-                { id: 'aurora-cards', name: 'Aurora Cards', icon: '🌠', price: 750 },
-                { id: 'dragon-cards', name: 'Dragon Cards', icon: '🐉', price: 1000 },
-                { id: 'ice-cards', name: 'Ice Crystal Cards', icon: '🧊', price: 400 },
-                { id: 'fire-cards', name: 'Flaming Cards', icon: '🔥', price: 600 },
-                { id: 'cosmic-cards', name: 'Cosmic Cards', icon: '🌌', price: 800 },
-                { id: 'electric-cards', name: 'Electric Cards', icon: '⚡', price: 550 },
-                { id: 'shadow-cards', name: 'Shadow Cards', icon: '🌑', price: 650 },
-                { id: 'rainbow-cards', name: 'Rainbow Cards', icon: '🌈', price: 700 },
-                { id: 'sunset-cards', name: 'Sunset Cards', icon: '🌅', price: 450 },
-                { id: 'ocean-cards', name: 'Ocean Wave Cards', icon: '🌊', price: 500 },
-                { id: 'galaxy-cards', name: 'Galaxy Cards', icon: '⭐', price: 850 },
-                { id: 'prism-cards', name: 'Prism Cards', icon: '🔮', price: 600 }
+                // Common (Gray)
+                { id: 'basic-cards', name: 'Basic Cards', icon: '🃏', price: 50, rarity: 'common' },
+                { id: 'red-cards', name: 'Red Cards', icon: '🔴', price: 75, rarity: 'common' },
+                { id: 'blue-cards', name: 'Blue Cards', icon: '�', price: 75, rarity: 'common' },
+                
+                // Uncommon (Green)
+                { id: 'gold-cards', name: 'Gold Cards', icon: '�', price: 150, rarity: 'uncommon' },
+                { id: 'silver-cards', name: 'Silver Cards', icon: '⚪', price: 125, rarity: 'uncommon' },
+                { id: 'neon-cards', name: 'Neon Cards', icon: '💫', price: 175, rarity: 'uncommon' },
+                
+                // Rare (Blue)
+                { id: 'diamond-cards', name: 'Diamond Cards', icon: '�', price: 350, rarity: 'rare' },
+                { id: 'ice-cards', name: 'Ice Crystal Cards', icon: '🧊', price: 300, rarity: 'rare' },
+                { id: 'fire-cards', name: 'Flaming Cards', icon: '🔥', price: 400, rarity: 'rare' },
+                { id: 'sunset-cards', name: 'Sunset Cards', icon: '🌅', price: 325, rarity: 'rare' },
+                
+                // Epic (Purple)
+                { id: 'royal-cards', name: 'Royal Cards', icon: '👑', price: 650, rarity: 'epic' },
+                { id: 'aurora-cards', name: 'Aurora Cards', icon: '�', price: 750, rarity: 'epic' },
+                { id: 'electric-cards', name: 'Electric Cards', icon: '⚡', price: 700, rarity: 'epic' },
+                { id: 'cosmic-cards', name: 'Cosmic Cards', icon: '🌌', price: 800, rarity: 'epic' },
+                { id: 'shadow-cards', name: 'Shadow Cards', icon: '🌑', price: 725, rarity: 'epic' },
+                
+                // Legendary (Orange)
+                { id: 'dragon-cards', name: 'Dragon Cards', icon: '🐉', price: 1200, rarity: 'legendary' },
+                { id: 'rainbow-cards', name: 'Rainbow Cards', icon: '�', price: 1100, rarity: 'legendary' },
+                { id: 'ocean-cards', name: 'Ocean Wave Cards', icon: '🌊', price: 1000, rarity: 'legendary' },
+                { id: 'galaxy-cards', name: 'Galaxy Cards', icon: '⭐', price: 1300, rarity: 'legendary' },
+                
+                // Exotic (Pink/Magenta)
+                { id: 'prism-cards', name: 'Prism Cards', icon: '🔮', price: 2000, rarity: 'exotic' },
+                { id: 'void-cards', name: 'Void Cards', icon: '⚫', price: 2500, rarity: 'exotic' },
+                { id: 'celestial-cards', name: 'Celestial Cards', icon: '🌟', price: 2200, rarity: 'exotic' }
             ],
             backgrounds: [
-                { id: 'space-bg', name: 'Space Theme', icon: '🌌', price: 150 },
-                { id: 'ocean-bg', name: 'Ocean Theme', icon: '🌊', price: 200 },
-                { id: 'fire-bg', name: 'Fire Theme', icon: '🔥', price: 300 },
-                { id: 'neon-bg', name: 'Neon City', icon: '🏙️', price: 400 },
-                { id: 'galaxy-bg', name: 'Galaxy', icon: '🌌', price: 500 },
-                { id: 'matrix-bg', name: 'Matrix', icon: '💚', price: 600 },
-                { id: 'sunset-bg', name: 'Sunset Valley', icon: '🌅', price: 350 },
-                { id: 'aurora-bg', name: 'Aurora Borealis', icon: '🌠', price: 450 },
-                { id: 'volcanic-bg', name: 'Volcanic Lava', icon: '🌋', price: 550 },
-                { id: 'cyberpunk-bg', name: 'Cyberpunk City', icon: '🤖', price: 650 },
-                { id: 'underwater-bg', name: 'Deep Sea', icon: '🐠', price: 400 },
-                { id: 'crystal-bg', name: 'Crystal Cave', icon: '💎', price: 500 }
+                // Common
+                { id: 'green-felt', name: 'Green Felt', icon: '🟢', price: 50, rarity: 'common' },
+                { id: 'wood-bg', name: 'Wood Pattern', icon: '🟫', price: 75, rarity: 'common' },
+                { id: 'marble-bg', name: 'Marble Pattern', icon: '⚪', price: 100, rarity: 'common' },
+                
+                // Uncommon
+                { id: 'space-bg', name: 'Space Theme', icon: '🌌', price: 200, rarity: 'uncommon' },
+                { id: 'ocean-bg', name: 'Ocean Theme', icon: '🌊', price: 175, rarity: 'uncommon' },
+                { id: 'sunset-bg', name: 'Sunset Valley', icon: '🌅', price: 225, rarity: 'uncommon' },
+                
+                // Rare
+                { id: 'fire-bg', name: 'Fire Theme', icon: '🔥', price: 400, rarity: 'rare' },
+                { id: 'aurora-bg', name: 'Aurora Borealis', icon: '�', price: 450, rarity: 'rare' },
+                { id: 'underwater-bg', name: 'Deep Sea', icon: '🐠', price: 425, rarity: 'rare' },
+                { id: 'crystal-bg', name: 'Crystal Cave', icon: '�', price: 475, rarity: 'rare' },
+                
+                // Epic
+                { id: 'neon-bg', name: 'Neon City', icon: '�️', price: 750, rarity: 'epic' },
+                { id: 'galaxy-bg', name: 'Galaxy', icon: '�', price: 800, rarity: 'epic' },
+                { id: 'volcanic-bg', name: 'Volcanic Lava', icon: '🌋', price: 825, rarity: 'epic' },
+                
+                // Legendary
+                { id: 'matrix-bg', name: 'Matrix', icon: '💚', price: 1200, rarity: 'legendary' },
+                { id: 'cyberpunk-bg', name: 'Cyberpunk City', icon: '🤖', price: 1300, rarity: 'legendary' },
+                
+                // Exotic
+                { id: 'dimension-bg', name: 'Dimensional Rift', icon: '🌀', price: 2000, rarity: 'exotic' },
+                { id: 'quantum-bg', name: 'Quantum Field', icon: '⚛️', price: 2200, rarity: 'exotic' }
             ],
             effects: [
-                { id: 'sparkle-fx', name: 'Sparkle Effect', icon: '✨', price: 75 },
-                { id: 'rainbow-fx', name: 'Rainbow Effect', icon: '🌈', price: 125 },
-                { id: 'lightning-fx', name: 'Lightning Effect', icon: '⚡', price: 200 },
-                { id: 'snow-fx', name: 'Snow Effect', icon: '❄️', price: 150 },
-                { id: 'confetti-fx', name: 'Confetti Blast', icon: '🎊', price: 250 },
-                { id: 'fireworks-fx', name: 'Fireworks', icon: '🎆', price: 400 },
-                { id: 'magic-fx', name: 'Magic Aura', icon: '🔮', price: 300 },
-                { id: 'coins-fx', name: 'Coin Rain', icon: '🪙', price: 350 },
-                { id: 'stars-fx', name: 'Shooting Stars', icon: '🌟', price: 300 },
-                { id: 'bubble-fx', name: 'Bubble Float', icon: '💭', price: 200 },
-                { id: 'hearts-fx', name: 'Floating Hearts', icon: '💖', price: 250 },
-                { id: 'thunder-fx', name: 'Thunder Storm', icon: '🌩️', price: 450 }
+                // Common
+                { id: 'sparkle-fx', name: 'Sparkle Effect', icon: '✨', price: 75, rarity: 'common' },
+                { id: 'glow-fx', name: 'Soft Glow', icon: '🔆', price: 50, rarity: 'common' },
+                { id: 'pulse-fx', name: 'Pulse Effect', icon: '💫', price: 100, rarity: 'common' },
+                
+                // Uncommon
+                { id: 'rainbow-fx', name: 'Rainbow Effect', icon: '🌈', price: 175, rarity: 'uncommon' },
+                { id: 'snow-fx', name: 'Snow Effect', icon: '❄️', price: 150, rarity: 'uncommon' },
+                { id: 'bubble-fx', name: 'Bubble Float', icon: '💭', price: 200, rarity: 'uncommon' },
+                
+                // Rare
+                { id: 'lightning-fx', name: 'Lightning Effect', icon: '⚡', price: 350, rarity: 'rare' },
+                { id: 'confetti-fx', name: 'Confetti Blast', icon: '🎊', price: 400, rarity: 'rare' },
+                { id: 'stars-fx', name: 'Shooting Stars', icon: '🌟', price: 375, rarity: 'rare' },
+                { id: 'hearts-fx', name: 'Floating Hearts', icon: '💖', price: 325, rarity: 'rare' },
+                
+                // Epic
+                { id: 'fireworks-fx', name: 'Fireworks', icon: '🎆', price: 700, rarity: 'epic' },
+                { id: 'magic-fx', name: 'Magic Aura', icon: '🔮', price: 650, rarity: 'epic' },
+                { id: 'thunder-fx', name: 'Thunder Storm', icon: '🌩️', price: 750, rarity: 'epic' },
+                
+                // Legendary
+                { id: 'coins-fx', name: 'Coin Rain', icon: '🪙', price: 1000, rarity: 'legendary' },
+                { id: 'phoenix-fx', name: 'Phoenix Flames', icon: '🔥', price: 1200, rarity: 'legendary' },
+                
+                // Exotic
+                { id: 'portal-fx', name: 'Portal Vortex', icon: '🌀', price: 2000, rarity: 'exotic' },
+                { id: 'cosmic-fx', name: 'Cosmic Storm', icon: '🌌', price: 2500, rarity: 'exotic' }
             ],
             plinko: [
-                { id: 'gold-ball', name: 'Golden Ball', icon: '🟡', price: 100 },
-                { id: 'fire-ball', name: 'Fire Ball', icon: '🔴', price: 150 },
-                { id: 'diamond-ball', name: 'Diamond Ball', icon: '💎', price: 300 },
-                { id: 'ice-ball', name: 'Ice Ball', icon: '🧊', price: 200 },
-                { id: 'rainbow-ball', name: 'Rainbow Ball', icon: '🌈', price: 400 },
-                { id: 'electric-ball', name: 'Electric Ball', icon: '⚡', price: 350 },
-                { id: 'plasma-ball', name: 'Plasma Ball', icon: '🟣', price: 500 }
+                // Common
+                { id: 'red-ball', name: 'Red Ball', icon: '�', price: 50, rarity: 'common' },
+                { id: 'blue-ball', name: 'Blue Ball', icon: '🔵', price: 50, rarity: 'common' },
+                { id: 'green-ball', name: 'Green Ball', icon: '🟢', price: 50, rarity: 'common' },
+                
+                // Uncommon
+                { id: 'gold-ball', name: 'Golden Ball', icon: '🟡', price: 150, rarity: 'uncommon' },
+                { id: 'silver-ball', name: 'Silver Ball', icon: '⚪', price: 125, rarity: 'uncommon' },
+                
+                // Rare
+                { id: 'fire-ball', name: 'Fire Ball', icon: '�', price: 300, rarity: 'rare' },
+                { id: 'ice-ball', name: 'Ice Ball', icon: '🧊', price: 275, rarity: 'rare' },
+                { id: 'electric-ball', name: 'Electric Ball', icon: '⚡', price: 350, rarity: 'rare' },
+                
+                // Epic
+                { id: 'diamond-ball', name: 'Diamond Ball', icon: '💎', price: 600, rarity: 'epic' },
+                { id: 'rainbow-ball', name: 'Rainbow Ball', icon: '🌈', price: 700, rarity: 'epic' },
+                
+                // Legendary
+                { id: 'plasma-ball', name: 'Plasma Ball', icon: '🟣', price: 1000, rarity: 'legendary' },
+                { id: 'dragon-ball', name: 'Dragon Ball', icon: '🐉', price: 1200, rarity: 'legendary' },
+                
+                // Exotic
+                { id: 'void-ball', name: 'Void Ball', icon: '⚫', price: 2000, rarity: 'exotic' },
+                { id: 'cosmic-ball', name: 'Cosmic Ball', icon: '🌌', price: 2200, rarity: 'exotic' }
             ],
             planes: [
-                { id: 'jet-plane', name: 'Fighter Jet', icon: '🛩️', price: 200 },
-                { id: 'rocket-plane', name: 'Rocket Ship', icon: '🚀', price: 400 },
-                { id: 'ufo-plane', name: 'UFO', icon: '🛸', price: 600 },
-                { id: 'dragon-plane', name: 'Dragon', icon: '🐉', price: 800 },
-                { id: 'phoenix-plane', name: 'Phoenix', icon: '🔥', price: 900 },
-                { id: 'spaceship-plane', name: 'Alien Ship', icon: '👽', price: 750 }
+                // Common
+                { id: 'paper-plane', name: 'Paper Plane', icon: '✈️', price: 100, rarity: 'common' },
+                { id: 'glider-plane', name: 'Glider', icon: '🪂', price: 125, rarity: 'common' },
+                
+                // Uncommon
+                { id: 'jet-plane', name: 'Fighter Jet', icon: '🛩️', price: 250, rarity: 'uncommon' },
+                { id: 'helicopter', name: 'Helicopter', icon: '🚁', price: 300, rarity: 'uncommon' },
+                
+                // Rare
+                { id: 'rocket-plane', name: 'Rocket Ship', icon: '🚀', price: 500, rarity: 'rare' },
+                { id: 'stealth-jet', name: 'Stealth Fighter', icon: '🛫', price: 600, rarity: 'rare' },
+                
+                // Epic
+                { id: 'ufo-plane', name: 'UFO', icon: '🛸', price: 900, rarity: 'epic' },
+                { id: 'phoenix-plane', name: 'Phoenix', icon: '�', price: 1000, rarity: 'epic' },
+                
+                // Legendary
+                { id: 'dragon-plane', name: 'Dragon', icon: '�', price: 1500, rarity: 'legendary' },
+                { id: 'spaceship-plane', name: 'Alien Ship', icon: '👽', price: 1300, rarity: 'legendary' },
+                
+                // Exotic
+                { id: 'void-ship', name: 'Void Ship', icon: '⚫', price: 2500, rarity: 'exotic' },
+                { id: 'time-machine', name: 'Time Machine', icon: '⏰', price: 3000, rarity: 'exotic' }
             ],
             trails: [
-                { id: 'gold-trail', name: 'Golden Trail', icon: '✨', price: 200 },
-                { id: 'rainbow-trail', name: 'Rainbow Trail', icon: '🌈', price: 300 },
-                { id: 'fire-trail', name: 'Fire Trail', icon: '🔥', price: 250 },
-                { id: 'electric-trail', name: 'Electric Trail', icon: '⚡', price: 350 },
-                { id: 'stardust-trail', name: 'Stardust Trail', icon: '⭐', price: 400 }
+                // Common
+                { id: 'white-trail', name: 'White Trail', icon: '⚪', price: 100, rarity: 'common' },
+                { id: 'smoke-trail', name: 'Smoke Trail', icon: '💨', price: 75, rarity: 'common' },
+                
+                // Uncommon
+                { id: 'gold-trail', name: 'Golden Trail', icon: '✨', price: 200, rarity: 'uncommon' },
+                { id: 'fire-trail', name: 'Fire Trail', icon: '🔥', price: 250, rarity: 'uncommon' },
+                
+                // Rare
+                { id: 'rainbow-trail', name: 'Rainbow Trail', icon: '🌈', price: 400, rarity: 'rare' },
+                { id: 'electric-trail', name: 'Electric Trail', icon: '⚡', price: 450, rarity: 'rare' },
+                
+                // Epic
+                { id: 'stardust-trail', name: 'Stardust Trail', icon: '⭐', price: 750, rarity: 'epic' },
+                { id: 'plasma-trail', name: 'Plasma Trail', icon: '🟣', price: 800, rarity: 'epic' },
+                
+                // Legendary
+                { id: 'galaxy-trail', name: 'Galaxy Trail', icon: '🌌', price: 1200, rarity: 'legendary' },
+                { id: 'phoenix-trail', name: 'Phoenix Trail', icon: '🔥', price: 1400, rarity: 'legendary' },
+                
+                // Exotic
+                { id: 'void-trail', name: 'Void Trail', icon: '⚫', price: 2000, rarity: 'exotic' },
+                { id: 'dimension-trail', name: 'Dimension Trail', icon: '🌀', price: 2500, rarity: 'exotic' }
             ],
             cursors: [
-                { id: 'golden-cursor', name: 'Golden Pointer', icon: '👆', price: 150 },
-                { id: 'fire-cursor', name: 'Fire Cursor', icon: '🔥', price: 200 },
-                { id: 'diamond-cursor', name: 'Diamond Cursor', icon: '💎', price: 250 },
-                { id: 'magic-cursor', name: 'Magic Wand', icon: '🪄', price: 300 },
-                { id: 'lightning-cursor', name: 'Lightning Bolt', icon: '⚡', price: 350 },
-                { id: 'star-cursor', name: 'Star Cursor', icon: '⭐', price: 400 }
+                // Common
+                { id: 'basic-cursor', name: 'Basic Pointer', icon: '👆', price: 75, rarity: 'common' },
+                { id: 'hand-cursor', name: 'Hand Cursor', icon: '👋', price: 50, rarity: 'common' },
+                
+                // Uncommon
+                { id: 'golden-cursor', name: 'Golden Pointer', icon: '�', price: 150, rarity: 'uncommon' },
+                { id: 'fire-cursor', name: 'Fire Cursor', icon: '🔥', price: 200, rarity: 'uncommon' },
+                
+                // Rare
+                { id: 'diamond-cursor', name: 'Diamond Cursor', icon: '💎', price: 350, rarity: 'rare' },
+                { id: 'magic-cursor', name: 'Magic Wand', icon: '🪄', price: 400, rarity: 'rare' },
+                
+                // Epic
+                { id: 'lightning-cursor', name: 'Lightning Bolt', icon: '⚡', price: 700, rarity: 'epic' },
+                { id: 'star-cursor', name: 'Star Cursor', icon: '⭐', price: 750, rarity: 'epic' },
+                
+                // Legendary
+                { id: 'dragon-cursor', name: 'Dragon Claw', icon: '🐉', price: 1200, rarity: 'legendary' },
+                { id: 'cosmic-cursor', name: 'Cosmic Cursor', icon: '🌌', price: 1300, rarity: 'legendary' },
+                
+                // Exotic
+                { id: 'void-cursor', name: 'Void Pointer', icon: '⚫', price: 2000, rarity: 'exotic' },
+                { id: 'quantum-cursor', name: 'Quantum Hand', icon: '⚛️', price: 2500, rarity: 'exotic' }
             ],
             particles: [
-                { id: 'floating-coins', name: 'Floating Coins', icon: '🪙', price: 250 },
-                { id: 'magic-sparkles', name: 'Magic Sparkles', icon: '✨', price: 300 },
-                { id: 'floating-cards', name: 'Floating Cards', icon: '🃏', price: 350 },
-                { id: 'dice-particles', name: 'Rolling Dice', icon: '🎲', price: 400 },
-                { id: 'gem-shower', name: 'Gem Shower', icon: '💎', price: 450 },
-                { id: 'phoenix-feathers', name: 'Phoenix Feathers', icon: '🪶', price: 500 }
+                // Common
+                { id: 'dust-particles', name: 'Dust Motes', icon: '💨', price: 100, rarity: 'common' },
+                { id: 'simple-sparkles', name: 'Simple Sparkles', icon: '✨', price: 125, rarity: 'common' },
+                
+                // Uncommon
+                { id: 'floating-coins', name: 'Floating Coins', icon: '🪙', price: 250, rarity: 'uncommon' },
+                { id: 'magic-sparkles', name: 'Magic Sparkles', icon: '⭐', price: 300, rarity: 'uncommon' },
+                
+                // Rare
+                { id: 'floating-cards', name: 'Floating Cards', icon: '🃏', price: 450, rarity: 'rare' },
+                { id: 'dice-particles', name: 'Rolling Dice', icon: '🎲', price: 500, rarity: 'rare' },
+                
+                // Epic
+                { id: 'gem-shower', name: 'Gem Shower', icon: '💎', price: 800, rarity: 'epic' },
+                { id: 'phoenix-feathers', name: 'Phoenix Feathers', icon: '🪶', price: 900, rarity: 'epic' },
+                
+                // Legendary
+                { id: 'dragon-scales', name: 'Dragon Scales', icon: '🐉', price: 1300, rarity: 'legendary' },
+                { id: 'star-fragments', name: 'Star Fragments', icon: '🌟', price: 1400, rarity: 'legendary' },
+                
+                // Exotic
+                { id: 'void-fragments', name: 'Void Fragments', icon: '⚫', price: 2200, rarity: 'exotic' },
+                { id: 'quantum-particles', name: 'Quantum Particles', icon: '⚛️', price: 2800, rarity: 'exotic' }
             ],
             themes: [
-                { id: 'cyberpunk-theme', name: 'Cyberpunk 2077', icon: '🤖', price: 800 },
-                { id: 'royal-theme', name: 'Royal Palace', icon: '👑', price: 750 },
-                { id: 'neon-vegas', name: 'Neon Vegas', icon: '🎰', price: 900 },
-                { id: 'space-station', name: 'Space Station', icon: '🚀', price: 850 },
-                { id: 'underwater', name: 'Underwater', icon: '🐠', price: 700 },
-                { id: 'dragon-lair', name: 'Dragon\'s Lair', icon: '🐉', price: 1000 }
+                // Common
+                { id: 'classic-theme', name: 'Classic Casino', icon: '🎰', price: 200, rarity: 'common' },
+                { id: 'vintage-theme', name: 'Vintage Style', icon: '🎩', price: 250, rarity: 'common' },
+                
+                // Uncommon
+                { id: 'modern-theme', name: 'Modern Clean', icon: '🏢', price: 400, rarity: 'uncommon' },
+                { id: 'underwater', name: 'Underwater', icon: '🐠', price: 500, rarity: 'uncommon' },
+                
+                // Rare
+                { id: 'royal-theme', name: 'Royal Palace', icon: '👑', price: 750, rarity: 'rare' },
+                { id: 'space-station', name: 'Space Station', icon: '🚀', price: 850, rarity: 'rare' },
+                
+                // Epic
+                { id: 'cyberpunk-theme', name: 'Cyberpunk 2077', icon: '🤖', price: 1200, rarity: 'epic' },
+                { id: 'neon-vegas', name: 'Neon Vegas', icon: '🌃', price: 1300, rarity: 'epic' },
+                
+                // Legendary
+                { id: 'dragon-lair', name: 'Dragon\'s Lair', icon: '🐉', price: 2000, rarity: 'legendary' },
+                { id: 'phoenix-temple', name: 'Phoenix Temple', icon: '🔥', price: 2200, rarity: 'legendary' },
+                
+                // Exotic
+                { id: 'void-dimension', name: 'Void Dimension', icon: '⚫', price: 3500, rarity: 'exotic' },
+                { id: 'quantum-realm', name: 'Quantum Realm', icon: '⚛️', price: 4000, rarity: 'exotic' }
             ]
         };
 
