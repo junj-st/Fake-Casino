@@ -9,7 +9,8 @@ work in progress<br />
 
 ![Fake Casino](https://img.shields.io/badge/Casino-Fake%20Casino-gold?style=for-the-badge)
 ![Games](https://img.shields.io/badge/Games-5-blue?style=for-the-badge)
-![Cosmetics](https://img.shields.io/badge/Cosmetics-60+-purple?style=for-the-badge)
+![Cosmetics](https://img.shields.io/badge/Cosmetics-120+-purple?style=for-the-badge)
+![Rarities](https://img.shields.io/badge/Rarities-6-magenta?style=for-the-badge)
 
 ## 🎮 **Games Available**
 
@@ -36,6 +37,29 @@ work in progress<br />
 - Casino-style gem hunting game
 - Choose number of mines (3, 5, or 8)
 - Cash out anytime with progressive multipliers
+
+## 🎨 **Cosmetics System**
+
+### 🌟 **6 Rarity Tiers**
+- **Common** (Gray) - Basic items, affordable prices
+- **Uncommon** (Green) - Enhanced visuals, moderate cost
+- **Rare** (Blue) - Premium effects, higher value
+- **Epic** (Purple) - Spectacular animations, expensive
+- **Legendary** (Orange) - Ultimate designs, glowing effects
+- **Exotic** (Pink) - Otherworldly items, pulsing animations
+
+### 🛍️ **9 Cosmetic Categories**
+- **Card Sleeves** - Customize your blackjack cards (23 items)
+- **Backgrounds** - Change the casino atmosphere (17 items)
+- **Effects** - Add visual flair to wins (17 items)
+- **Plinko Balls** - Unique ball designs (14 items)
+- **Airplanes** - Aviator game aircraft (12 items)
+- **Trails** - Aircraft trail effects (12 items)
+- **Cursors** - Custom mouse pointers (12 items)
+- **Particles** - Ambient effects (12 items)
+- **Themes** - Complete visual overhauls (12 items)
+
+**Total: 120+ cosmetic items across all rarities!**
 
 
 ## 📦 **Installation**

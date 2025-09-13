@@ -950,6 +950,110 @@ body {
     padding: 20px;
     text-align: center;
     transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Rarity System Styling */
+.shop-item.rarity-common {
+    border-color: #9e9e9e;
+    background: linear-gradient(135deg, #424242, #616161);
+}
+
+.shop-item.rarity-uncommon {
+    border-color: #4caf50;
+    background: linear-gradient(135deg, #2e7d32, #388e3c);
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.shop-item.rarity-rare {
+    border-color: #2196f3;
+    background: linear-gradient(135deg, #1565c0, #1976d2);
+    box-shadow: 0 0 15px rgba(33, 150, 243, 0.4);
+}
+
+.shop-item.rarity-epic {
+    border-color: #9c27b0;
+    background: linear-gradient(135deg, #6a1b9a, #7b1fa2);
+    box-shadow: 0 0 20px rgba(156, 39, 176, 0.5);
+}
+
+.shop-item.rarity-legendary {
+    border-color: #ff9800;
+    background: linear-gradient(135deg, #e65100, #f57c00);
+    box-shadow: 0 0 25px rgba(255, 152, 0, 0.6);
+    animation: legendaryGlow 2s ease-in-out infinite alternate;
+}
+
+.shop-item.rarity-exotic {
+    border-color: #e91e63;
+    background: linear-gradient(135deg, #ad1457, #c2185b);
+    box-shadow: 0 0 30px rgba(233, 30, 99, 0.7);
+    animation: exoticPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes legendaryGlow {
+    0% { box-shadow: 0 0 25px rgba(255, 152, 0, 0.6); }
+    100% { box-shadow: 0 0 35px rgba(255, 152, 0, 0.9), 0 0 50px rgba(255, 193, 7, 0.4); }
+}
+
+@keyframes exoticPulse {
+    0% { 
+        box-shadow: 0 0 30px rgba(233, 30, 99, 0.7);
+        transform: scale(1);
+    }
+    100% { 
+        box-shadow: 0 0 40px rgba(233, 30, 99, 1), 0 0 60px rgba(233, 30, 99, 0.5);
+        transform: scale(1.02);
+    }
+}
+
+.rarity-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.7em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    z-index: 10;
+}
+
+.rarity-common .rarity-badge {
+    background: linear-gradient(135deg, #757575, #9e9e9e);
+}
+
+.rarity-uncommon .rarity-badge {
+    background: linear-gradient(135deg, #388e3c, #4caf50);
+}
+
+.rarity-rare .rarity-badge {
+    background: linear-gradient(135deg, #1976d2, #2196f3);
+}
+
+.rarity-epic .rarity-badge {
+    background: linear-gradient(135deg, #7b1fa2, #9c27b0);
+}
+
+.rarity-legendary .rarity-badge {
+    background: linear-gradient(135deg, #f57c00, #ff9800);
+    animation: badgeGlow 2s ease-in-out infinite alternate;
+}
+
+.rarity-exotic .rarity-badge {
+    background: linear-gradient(135deg, #c2185b, #e91e63);
+    animation: badgePulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes badgeGlow {
+    0% { box-shadow: 0 0 5px rgba(255, 152, 0, 0.5); }
+    100% { box-shadow: 0 0 15px rgba(255, 152, 0, 0.8); }
+}
+
+@keyframes badgePulse {
+    0% { box-shadow: 0 0 5px rgba(233, 30, 99, 0.5); }
+    100% { box-shadow: 0 0 15px rgba(233, 30, 99, 0.8); }
 }
 
 .shop-item:hover {
@@ -1358,4 +1462,46 @@ body {
 .quick-bet-btn:active {
     transform: translateY(0px);
     background: linear-gradient(135deg, #3D8B7A, #356A5E);
+}
+
+/* New Card and Ball Animation Keyframes */
+@keyframes voidPulse {
+    0% { box-shadow: 0 0 30px rgba(139, 0, 139, 0.8); }
+    100% { box-shadow: 0 0 50px rgba(139, 0, 139, 1); }
+}
+
+@keyframes celestialGlow {
+    0% { box-shadow: 0 0 35px rgba(255, 215, 0, 0.8); }
+    100% { box-shadow: 0 0 55px rgba(255, 215, 0, 1); }
+}
+
+@keyframes dragonPulse {
+    0% { box-shadow: 0 0 35px #FF4500; }
+    100% { box-shadow: 0 0 55px #FF4500, 0 0 80px #FF6347; }
+}
+
+@keyframes voidDistort {
+    0% { 
+        box-shadow: 0 0 45px #8b008b; 
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 0 60px #8b008b, 0 0 80px #4b0082; 
+        transform: scale(1.05);
+    }
+    100% { 
+        box-shadow: 0 0 45px #8b008b; 
+        transform: scale(1);
+    }
+}
+
+@keyframes cosmicSwirl {
+    0% { 
+        box-shadow: 0 0 50px #9370db;
+        transform: rotate(0deg);
+    }
+    100% { 
+        box-shadow: 0 0 70px #9370db, 0 0 90px #4b0082;
+        transform: rotate(360deg);
+    }
 }
