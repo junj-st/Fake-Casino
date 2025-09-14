@@ -221,11 +221,30 @@ class FakeCasino {
             'crystal-bg': 'linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 25%, #a0a0a0 50%, #e0e0e0 75%, #ffffff 100%)',
             'dimension-bg': 'linear-gradient(45deg, #000000, #1a1a1a, #333333, #000000, #1a1a1a)',
             'quantum-bg': 'linear-gradient(135deg, #001122 0%, #003366 25%, #000000 50%, #112233 75%, #002244 100%)',
-            'multiverse-bg': 'linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #8b00ff, #ff0000, #ff7f00, #ffff00, #00ff00)'
+            'multiverse-bg': 'linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #8b00ff, #ff0000, #ff7f00, #ffff00, #00ff00)',
+            'royal-court': 'linear-gradient(135deg, #ffd700 0%, #b8860b 15%, #8b0000 30%, #1e1e1e 45%, #8b0000 60%, #b8860b 75%, #ffd700 100%), radial-gradient(ellipse at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%)',
+            'empire-vault': 'linear-gradient(135deg, #000000 0%, #1a0033 15%, #4b0082 30%, #2f2f2f 45%, #4b0082 60%, #1a0033 75%, #000000 100%), radial-gradient(circle at 30% 70%, rgba(138, 43, 226, 0.2) 0%, transparent 50%)',
+            'lebron-bg': 'url("images/Lebron James Background.jpg"), linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(0, 0, 0, 0.7))',
+            'ross-bg': 'url("images/Rick Ross Background.jpg"), linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(0, 0, 0, 0.7))'
         };
         
         if (backgrounds[backgroundId]) {
             document.body.style.background = backgrounds[backgroundId];
+            document.body.style.backgroundSize = 'cover';
+            document.body.style.backgroundPosition = 'center';
+            document.body.style.backgroundRepeat = 'no-repeat';
+            document.body.style.backgroundAttachment = 'fixed';
+            
+            // Add special animations for exotic backgrounds
+            if (backgroundId === 'royal-court') {
+                this.addLeBronThemeEffects();
+            } else if (backgroundId === 'empire-vault') {
+                this.addRossEmpireEffects();
+            } else if (backgroundId === 'lebron-bg') {
+                this.addExoticLeBronEffects();
+            } else if (backgroundId === 'ross-bg') {
+                this.addExoticRossEffects();
+            }
         }
     }
 
@@ -650,6 +669,334 @@ class FakeCasino {
                     50% { transform: scale(1.5); opacity: 0.8; filter: brightness(3) hue-rotate(180deg); }
                     75% { transform: scale(2.5); opacity: 0.6; filter: brightness(2) hue-rotate(270deg); }
                     100% { transform: scale(0); opacity: 0; filter: brightness(1) hue-rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    addLeBronThemeEffects() {
+        // Add crown particles
+        for (let i = 0; i < 8; i++) {
+            setTimeout(() => {
+                const crown = document.createElement('div');
+                crown.className = 'cosmetic-effect lebron-crown';
+                crown.textContent = '👑';
+                crown.style.cssText = `
+                    position: fixed;
+                    top: ${Math.random() * 80 + 10}vh;
+                    left: ${Math.random() * 80 + 10}vw;
+                    font-size: 25px;
+                    pointer-events: none;
+                    z-index: 9998;
+                    animation: crownFloat 4s ease-in-out infinite;
+                `;
+                
+                document.body.appendChild(crown);
+                setTimeout(() => crown.remove(), 8000);
+            }, i * 500);
+        }
+        
+        // Add basketball particles
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+                const ball = document.createElement('div');
+                ball.className = 'cosmetic-effect lebron-ball';
+                ball.textContent = '🏀';
+                ball.style.cssText = `
+                    position: fixed;
+                    top: ${Math.random() * 60 + 20}vh;
+                    left: ${Math.random() * 60 + 20}vw;
+                    font-size: 30px;
+                    pointer-events: none;
+                    z-index: 9998;
+                    animation: basketballBounce 3s ease-in-out infinite;
+                `;
+                
+                document.body.appendChild(ball);
+                setTimeout(() => ball.remove(), 6000);
+            }, i * 800);
+        }
+        
+        if (!document.head.querySelector('#lebron-styles')) {
+            const style = document.createElement('style');
+            style.id = 'lebron-styles';
+            style.textContent = `
+                @keyframes crownFloat {
+                    0%, 100% { 
+                        transform: translateY(0) rotate(0deg);
+                        opacity: 0.7;
+                        filter: drop-shadow(0 0 10px gold);
+                    }
+                    50% { 
+                        transform: translateY(-20px) rotate(180deg);
+                        opacity: 1;
+                        filter: drop-shadow(0 0 20px gold);
+                    }
+                }
+                @keyframes basketballBounce {
+                    0%, 100% { 
+                        transform: translateY(0) scale(1);
+                        filter: drop-shadow(0 0 8px #ff8c00);
+                    }
+                    25%, 75% { 
+                        transform: translateY(-15px) scale(1.1);
+                        filter: drop-shadow(0 0 15px #ff8c00);
+                    }
+                    50% { 
+                        transform: translateY(-30px) scale(1.2);
+                        filter: drop-shadow(0 0 25px #ff8c00);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    addRossEmpireEffects() {
+        // Add diamond particles
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => {
+                const diamond = document.createElement('div');
+                diamond.className = 'cosmetic-effect ross-diamond';
+                diamond.textContent = '💎';
+                diamond.style.cssText = `
+                    position: fixed;
+                    top: ${Math.random() * 70 + 15}vh;
+                    left: ${Math.random() * 70 + 15}vw;
+                    font-size: 20px;
+                    pointer-events: none;
+                    z-index: 9998;
+                    animation: diamondSparkle 3s ease-in-out infinite;
+                `;
+                
+                document.body.appendChild(diamond);
+                setTimeout(() => diamond.remove(), 6000);
+            }, i * 300);
+        }
+        
+        // Add money particles
+        for (let i = 0; i < 6; i++) {
+            setTimeout(() => {
+                const money = document.createElement('div');
+                money.className = 'cosmetic-effect ross-money';
+                money.textContent = '💰';
+                money.style.cssText = `
+                    position: fixed;
+                    top: ${Math.random() * 60 + 20}vh;
+                    left: ${Math.random() * 60 + 20}vw;
+                    font-size: 28px;
+                    pointer-events: none;
+                    z-index: 9998;
+                    animation: moneyRain 4s ease-in-out infinite;
+                `;
+                
+                document.body.appendChild(money);
+                setTimeout(() => money.remove(), 8000);
+            }, i * 600);
+        }
+        
+        if (!document.head.querySelector('#ross-styles')) {
+            const style = document.createElement('style');
+            style.id = 'ross-styles';
+            style.textContent = `
+                @keyframes diamondSparkle {
+                    0%, 100% { 
+                        transform: scale(1) rotate(0deg);
+                        opacity: 0.8;
+                        filter: drop-shadow(0 0 8px #8a2be2);
+                    }
+                    25% { 
+                        transform: scale(1.3) rotate(90deg);
+                        opacity: 1;
+                        filter: drop-shadow(0 0 15px #8a2be2);
+                    }
+                    75% { 
+                        transform: scale(0.7) rotate(270deg);
+                        opacity: 0.9;
+                        filter: drop-shadow(0 0 12px #8a2be2);
+                    }
+                }
+                @keyframes moneyRain {
+                    0% { 
+                        transform: translateY(-20px) rotate(0deg);
+                        opacity: 0;
+                    }
+                    25%, 75% { 
+                        transform: translateY(10px) rotate(180deg);
+                        opacity: 1;
+                        filter: drop-shadow(0 0 10px #32cd32);
+                    }
+                    100% { 
+                        transform: translateY(40px) rotate(360deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    addExoticLeBronEffects() {
+        // Enhanced effects for actual LeBron image background
+        for (let i = 0; i < 12; i++) {
+            setTimeout(() => {
+                const crown = document.createElement('div');
+                crown.className = 'cosmetic-effect exotic-lebron-crown';
+                crown.textContent = '👑';
+                crown.style.cssText = `
+                    position: fixed;
+                    top: ${Math.random() * 70 + 15}vh;
+                    left: ${Math.random() * 70 + 15}vw;
+                    font-size: 30px;
+                    pointer-events: none;
+                    z-index: 9999;
+                    animation: exoticCrownFloat 3s ease-in-out infinite;
+                `;
+                
+                document.body.appendChild(crown);
+                setTimeout(() => crown.remove(), 12000);
+            }, i * 400);
+        }
+        
+        // Add championship banners
+        for (let i = 0; i < 4; i++) {
+            setTimeout(() => {
+                const trophy = document.createElement('div');
+                trophy.className = 'cosmetic-effect lebron-trophy';
+                trophy.textContent = '🏆';
+                trophy.style.cssText = `
+                    position: fixed;
+                    top: ${Math.random() * 50 + 25}vh;
+                    left: ${Math.random() * 50 + 25}vw;
+                    font-size: 35px;
+                    pointer-events: none;
+                    z-index: 9999;
+                    animation: trophyShine 4s ease-in-out infinite;
+                `;
+                
+                document.body.appendChild(trophy);
+                setTimeout(() => trophy.remove(), 16000);
+            }, i * 1000);
+        }
+        
+        if (!document.head.querySelector('#exotic-lebron-styles')) {
+            const style = document.createElement('style');
+            style.id = 'exotic-lebron-styles';
+            style.textContent = `
+                @keyframes exoticCrownFloat {
+                    0%, 100% { 
+                        transform: translateY(0) rotate(0deg) scale(1);
+                        opacity: 0.8;
+                        filter: drop-shadow(0 0 15px gold) drop-shadow(0 0 30px #ffd700);
+                    }
+                    33% { 
+                        transform: translateY(-25px) rotate(120deg) scale(1.3);
+                        opacity: 1;
+                        filter: drop-shadow(0 0 25px gold) drop-shadow(0 0 50px #ffd700);
+                    }
+                    66% { 
+                        transform: translateY(-10px) rotate(240deg) scale(1.1);
+                        opacity: 0.9;
+                        filter: drop-shadow(0 0 20px gold) drop-shadow(0 0 40px #ffd700);
+                    }
+                }
+                @keyframes trophyShine {
+                    0%, 100% { 
+                        transform: scale(1) rotate(0deg);
+                        filter: drop-shadow(0 0 20px #ffd700) brightness(1);
+                    }
+                    25% { 
+                        transform: scale(1.2) rotate(90deg);
+                        filter: drop-shadow(0 0 35px #ffd700) brightness(1.3);
+                    }
+                    75% { 
+                        transform: scale(0.9) rotate(270deg);
+                        filter: drop-shadow(0 0 25px #ffd700) brightness(1.1);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    addExoticRossEffects() {
+        // Enhanced effects for actual Rick Ross image background
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => {
+                const diamond = document.createElement('div');
+                diamond.className = 'cosmetic-effect exotic-ross-diamond';
+                diamond.textContent = '💎';
+                diamond.style.cssText = `
+                    position: fixed;
+                    top: ${Math.random() * 70 + 15}vh;
+                    left: ${Math.random() * 70 + 15}vw;
+                    font-size: 25px;
+                    pointer-events: none;
+                    z-index: 9999;
+                    animation: exoticDiamondSparkle 2.5s ease-in-out infinite;
+                `;
+                
+                document.body.appendChild(diamond);
+                setTimeout(() => diamond.remove(), 15000);
+            }, i * 200);
+        }
+        
+        // Add luxury cars
+        for (let i = 0; i < 3; i++) {
+            setTimeout(() => {
+                const car = document.createElement('div');
+                car.className = 'cosmetic-effect ross-car';
+                car.textContent = '🚗';
+                car.style.cssText = `
+                    position: fixed;
+                    top: ${Math.random() * 40 + 30}vh;
+                    left: ${Math.random() * 40 + 30}vw;
+                    font-size: 40px;
+                    pointer-events: none;
+                    z-index: 9999;
+                    animation: luxuryCruise 6s ease-in-out infinite;
+                `;
+                
+                document.body.appendChild(car);
+                setTimeout(() => car.remove(), 18000);
+            }, i * 1500);
+        }
+        
+        if (!document.head.querySelector('#exotic-ross-styles')) {
+            const style = document.createElement('style');
+            style.id = 'exotic-ross-styles';
+            style.textContent = `
+                @keyframes exoticDiamondSparkle {
+                    0%, 100% { 
+                        transform: scale(1) rotate(0deg);
+                        opacity: 0.9;
+                        filter: drop-shadow(0 0 12px #8a2be2) drop-shadow(0 0 25px #dda0dd);
+                    }
+                    25% { 
+                        transform: scale(1.5) rotate(90deg);
+                        opacity: 1;
+                        filter: drop-shadow(0 0 20px #8a2be2) drop-shadow(0 0 40px #dda0dd);
+                    }
+                    75% { 
+                        transform: scale(0.8) rotate(270deg);
+                        opacity: 0.95;
+                        filter: drop-shadow(0 0 15px #8a2be2) drop-shadow(0 0 30px #dda0dd);
+                    }
+                }
+                @keyframes luxuryCruise {
+                    0%, 100% { 
+                        transform: translateX(0) scale(1);
+                        filter: drop-shadow(0 0 15px #32cd32) brightness(1);
+                    }
+                    25% { 
+                        transform: translateX(20px) scale(1.1);
+                        filter: drop-shadow(0 0 25px #32cd32) brightness(1.2);
+                    }
+                    75% { 
+                        transform: translateX(-20px) scale(0.9);
+                        filter: drop-shadow(0 0 20px #32cd32) brightness(1.1);
+                    }
                 }
             `;
             document.head.appendChild(style);
@@ -2301,9 +2648,13 @@ class FakeCasino {
                 // Mythic
                 { id: 'dimension-bg', name: 'Dimensional Rift', icon: '🌀', price: 3500, rarity: 'mythic' },
                 { id: 'quantum-bg', name: 'Quantum Field', icon: '⚛️', price: 3800, rarity: 'mythic' },
+                { id: 'multiverse-bg', name: 'Multiverse Portal', icon: '🌐', price: 4000, rarity: 'mythic' },
+                { id: 'royal-court', name: 'Royal Court', icon: '👑', price: 4200, rarity: 'mythic' },
+                { id: 'empire-vault', name: 'Empire Vault', icon: '💎', price: 4100, rarity: 'mythic' },
                 
                 // Exotic
-                { id: 'multiverse-bg', name: 'Multiverse Portal', icon: '🌐', price: 12000, rarity: 'exotic' }
+                { id: 'lebron-bg', name: 'LeBron Legacy', icon: '🏀', price: 18000, rarity: 'exotic' },
+                { id: 'ross-bg', name: 'Ross Dynasty', icon: '�', price: 17000, rarity: 'exotic' }
             ],
             effects: [
                 // Common
