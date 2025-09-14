@@ -1,11 +1,5 @@
 
-just for fun<br />
-work in progress<br />
-
-
-
-
-# 🎰 Fake Casino
+# 🎰 Fake Casino | Work in Progress, Just for fun
 
 ![Fake Casino](https://img.shields.io/badge/Casino-Fake%20Casino-gold?style=for-the-badge)
 ![Games](https://img.shields.io/badge/Games-5-blue?style=for-the-badge)
@@ -95,14 +89,8 @@ Feel free to contribute to this project! Areas for improvement:
 - Performance optimizations
 - Bug fixes
 
-## 📄 **License**
-
-This project is open source and available under the [MIT License](LICENSE).
-
 ## 🎮 **Live Demo**
 
 Open `index.html` in your browser to start playing!
 
 ---
-
-**Enjoy playing at the Fake Casino! 🎰✨**
