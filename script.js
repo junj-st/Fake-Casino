@@ -218,7 +218,10 @@ class FakeCasino {
             'volcanic-bg': 'linear-gradient(135deg, #8b0000 0%, #ff4500 25%, #ff6347 50%, #ffa500 75%, #ff0000 100%)',
             'cyberpunk-bg': 'linear-gradient(135deg, #0a0a0a 0%, #1a0033 25%, #330066 50%, #0a0a0a 75%, #1a0033 100%)',
             'underwater-bg': 'linear-gradient(135deg, #001f3f 0%, #003d7a 25%, #0077be 50%, #20b2aa 75%, #48d1cc 100%)',
-            'crystal-bg': 'linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 25%, #a0a0a0 50%, #e0e0e0 75%, #ffffff 100%)'
+            'crystal-bg': 'linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 25%, #a0a0a0 50%, #e0e0e0 75%, #ffffff 100%)',
+            'dimension-bg': 'linear-gradient(45deg, #000000, #1a1a1a, #333333, #000000, #1a1a1a)',
+            'quantum-bg': 'linear-gradient(135deg, #001122 0%, #003366 25%, #000000 50%, #112233 75%, #002244 100%)',
+            'multiverse-bg': 'linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #8b00ff, #ff0000, #ff7f00, #ffff00, #00ff00)'
         };
         
         if (backgrounds[backgroundId]) {
@@ -246,6 +249,12 @@ class FakeCasino {
             this.addMagicEffect();
         } else if (effectId === 'coins-fx') {
             this.addCoinsEffect();
+        } else if (effectId === 'portal-fx') {
+            this.addPortalEffect();
+        } else if (effectId === 'cosmic-fx') {
+            this.addCosmicEffect();
+        } else if (effectId === 'reality-break-fx') {
+            this.addRealityBreakEffect();
         }
     }
 
@@ -539,6 +548,114 @@ class FakeCasino {
         }
     }
 
+    addPortalEffect() {
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => {
+                const portal = document.createElement('div');
+                portal.className = 'cosmetic-effect';
+                portal.textContent = '🌀';
+                portal.style.cssText = `
+                    position: fixed;
+                    top: ${Math.random() * 80 + 10}vh;
+                    left: ${Math.random() * 80 + 10}vw;
+                    font-size: 30px;
+                    pointer-events: none;
+                    z-index: 9999;
+                    animation: portalSpin 3s ease-in-out forwards;
+                `;
+                
+                document.body.appendChild(portal);
+                setTimeout(() => portal.remove(), 3000);
+            }, i * 200);
+        }
+        
+        if (!document.head.querySelector('#portal-style')) {
+            const style = document.createElement('style');
+            style.id = 'portal-style';
+            style.textContent = `
+                @keyframes portalSpin {
+                    0% { transform: scale(0) rotate(0deg); opacity: 0; }
+                    50% { transform: scale(1.5) rotate(180deg); opacity: 1; }
+                    100% { transform: scale(0) rotate(360deg); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    addCosmicEffect() {
+        for (let i = 0; i < 20; i++) {
+            setTimeout(() => {
+                const cosmic = document.createElement('div');
+                cosmic.className = 'cosmetic-effect';
+                cosmic.textContent = '🌌';
+                cosmic.style.cssText = `
+                    position: fixed;
+                    top: ${Math.random() * 100}vh;
+                    left: ${Math.random() * 100}vw;
+                    font-size: 25px;
+                    pointer-events: none;
+                    z-index: 9999;
+                    animation: cosmicFloat 4s ease-out forwards;
+                `;
+                
+                document.body.appendChild(cosmic);
+                setTimeout(() => cosmic.remove(), 4000);
+            }, i * 150);
+        }
+        
+        if (!document.head.querySelector('#cosmic-style')) {
+            const style = document.createElement('style');
+            style.id = 'cosmic-style';
+            style.textContent = `
+                @keyframes cosmicFloat {
+                    0% { transform: scale(0) rotate(0deg); opacity: 0; filter: hue-rotate(0deg); }
+                    25% { transform: scale(1.2) rotate(90deg); opacity: 1; filter: hue-rotate(90deg); }
+                    75% { transform: scale(1) rotate(270deg); opacity: 0.8; filter: hue-rotate(270deg); }
+                    100% { transform: scale(0) rotate(360deg); opacity: 0; filter: hue-rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    addRealityBreakEffect() {
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => {
+                const reality = document.createElement('div');
+                reality.className = 'cosmetic-effect';
+                reality.textContent = '💥';
+                reality.style.cssText = `
+                    position: fixed;
+                    top: ${Math.random() * 100}vh;
+                    left: ${Math.random() * 100}vw;
+                    font-size: 40px;
+                    pointer-events: none;
+                    z-index: 9999;
+                    animation: realityBreak 2s ease-out forwards;
+                `;
+                
+                document.body.appendChild(reality);
+                setTimeout(() => reality.remove(), 2000);
+            }, i * 400);
+        }
+        
+        if (!document.head.querySelector('#reality-style')) {
+            const style = document.createElement('style');
+            style.id = 'reality-style';
+            style.textContent = `
+                @keyframes realityBreak {
+                    0% { transform: scale(0); opacity: 0; filter: brightness(1) hue-rotate(0deg); }
+                    25% { transform: scale(2); opacity: 1; filter: brightness(2) hue-rotate(90deg); }
+                    50% { transform: scale(1.5); opacity: 0.8; filter: brightness(3) hue-rotate(180deg); }
+                    75% { transform: scale(2.5); opacity: 0.6; filter: brightness(2) hue-rotate(270deg); }
+                    100% { transform: scale(0); opacity: 0; filter: brightness(1) hue-rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
     applyCursor(cursorId) {
         const cursorStyles = {
             'golden-cursor': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><text y=\'24\' font-size=\'24\'>�</text></svg>"), pointer',
@@ -546,7 +663,12 @@ class FakeCasino {
             'diamond-cursor': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><text y=\'24\' font-size=\'24\'>💎</text></svg>"), pointer',
             'magic-cursor': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><text y=\'24\' font-size=\'24\'>🪄</text></svg>"), pointer',
             'lightning-cursor': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><text y=\'24\' font-size=\'24\'>⚡</text></svg>"), pointer',
-            'star-cursor': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><text y=\'24\' font-size=\'24\'>⭐</text></svg>"), pointer'
+            'star-cursor': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><text y=\'24\' font-size=\'24\'>⭐</text></svg>"), pointer',
+            'dragon-cursor': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><text y=\'24\' font-size=\'24\'>🐉</text></svg>"), pointer',
+            'cosmic-cursor': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><text y=\'24\' font-size=\'24\'>🌌</text></svg>"), pointer',
+            'void-cursor': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><text y=\'24\' font-size=\'24\'>⚫</text></svg>"), pointer',
+            'quantum-cursor': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><text y=\'24\' font-size=\'24\'>⚛️</text></svg>"), pointer',
+            'reality-cursor': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><text y=\'24\' font-size=\'24\'>🌀</text></svg>"), pointer'
         };
         
         document.body.style.cursor = cursorStyles[cursorId] || 'default';
@@ -862,13 +984,19 @@ class FakeCasino {
                 'galaxy-cards': 'background: linear-gradient(135deg, #2c1810, #8b4513, #1e0a3c, #4b0082, #0f0f23); border: 2px solid #9370db; box-shadow: 0 0 25px rgba(147, 112, 219, 0.8); animation: galaxyShift 5s ease-in-out infinite; color: #ffffff !important;',
                 
                 // Exotic Cards
-                'prism-cards': 'background: linear-gradient(135deg, #ff9a9e, #fecfef, #fecfef, #a8edea, #d299c2, #fed6e3); border: 2px solid #ffffff; box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); animation: prismShift 2.5s ease-in-out infinite;',
-                'void-cards': 'background: linear-gradient(135deg, #000000, #1a1a1a, #2d2d30, #000000); border: 2px solid #8b008b; box-shadow: 0 0 30px rgba(139, 0, 139, 0.8); color: #ffffff !important; animation: voidPulse 2s ease-in-out infinite;',
-                'celestial-cards': 'background: linear-gradient(135deg, #0f3460, #16537e, #1e6091, #29648a); border: 2px solid #ffd700; box-shadow: 0 0 35px rgba(255, 215, 0, 0.8); color: #ffd700 !important; animation: celestialGlow 3s ease-in-out infinite;'
+                'prism-cards': 'background: linear-gradient(135deg, #ff9a9e, #fecfef, #fecfef, #a8edea, #d299c2, #fed6e3); border: 2px solid #ffffff; box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); animation: prismShift 2.5s ease-in-out infinite; transform-style: preserve-3d; position: relative;',
+                'void-cards': 'background: linear-gradient(135deg, #000000, #1a1a1a, #2d2d30, #000000); border: 2px solid #8b008b; box-shadow: 0 0 30px rgba(139, 0, 139, 0.8), inset 0 0 20px rgba(139, 0, 139, 0.3); color: #ffffff !important; animation: voidPulse 2s ease-in-out infinite, voidDistortion 4s ease-in-out infinite; overflow: hidden;',
+                'celestial-cards': 'background: linear-gradient(135deg, #0f3460, #16537e, #1e6091, #29648a); border: 2px solid #ffd700; box-shadow: 0 0 35px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.4); color: #ffd700 !important; animation: celestialGlow 3s ease-in-out infinite, starField 8s linear infinite; position: relative;',
+                'infinity-cards': 'background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 15%, #16213e 30%, #0f3460 45%, #000428 60%, #1a1a2e 75%, #0a0a0a 100%), radial-gradient(ellipse at 50% 50%, rgba(138, 43, 226, 0.3) 0%, transparent 50%), radial-gradient(ellipse at 20% 80%, rgba(75, 0, 130, 0.2) 0%, transparent 40%); border: 2px solid transparent; border-image: linear-gradient(45deg, #4b0082, #663399, #9370db, #ba55d3, #4b0082) 1; box-shadow: 0 0 40px rgba(138, 43, 226, 0.6), 0 0 80px rgba(75, 0, 130, 0.3), inset 0 0 30px rgba(138, 43, 226, 0.1); color: #e6e6fa !important; animation: infinityGlow 4s ease-in-out infinite alternate, cosmicShimmer 6s linear infinite; position: relative; overflow: hidden;'
             };
             
             if (cardStyles[this.activeCosmetics.cardSleeve]) {
                 cardElement.style.cssText += cardStyles[this.activeCosmetics.cardSleeve];
+                
+                // Add special class for exotic/mythic cards to enable advanced effects
+                if (['prism-cards', 'void-cards', 'celestial-cards', 'infinity-cards'].includes(this.activeCosmetics.cardSleeve)) {
+                    cardElement.classList.add('exotic-card', this.activeCosmetics.cardSleeve);
+                }
             }
         }
         
@@ -937,6 +1065,94 @@ class FakeCasino {
                     0% { filter: hue-rotate(0deg) saturate(1); }
                     50% { filter: hue-rotate(180deg) saturate(1.3); }
                     100% { filter: hue-rotate(360deg) saturate(1); }
+                }
+                @keyframes infinityGlow {
+                    0% { 
+                        box-shadow: 0 0 40px rgba(138, 43, 226, 0.6), 0 0 80px rgba(75, 0, 130, 0.3), inset 0 0 30px rgba(138, 43, 226, 0.1);
+                        transform: scale(1);
+                    }
+                    100% { 
+                        box-shadow: 0 0 60px rgba(138, 43, 226, 0.9), 0 0 120px rgba(75, 0, 130, 0.5), inset 0 0 50px rgba(138, 43, 226, 0.2);
+                        transform: scale(1.02);
+                    }
+                }
+                @keyframes cosmicShimmer {
+                    0% { 
+                        filter: hue-rotate(0deg) brightness(1) contrast(1);
+                        background-position: 0% 50%, 0% 50%, 20% 80%;
+                    }
+                    25% {
+                        filter: hue-rotate(15deg) brightness(1.1) contrast(1.05);
+                        background-position: 25% 25%, 50% 50%, 80% 20%;
+                    }
+                    50% {
+                        filter: hue-rotate(30deg) brightness(1.2) contrast(1.1);
+                        background-position: 100% 50%, 100% 50%, 50% 50%;
+                    }
+                    75% {
+                        filter: hue-rotate(15deg) brightness(1.1) contrast(1.05);
+                        background-position: 75% 75%, 50% 50%, 20% 80%;
+                    }
+                    100% { 
+                        filter: hue-rotate(0deg) brightness(1) contrast(1);
+                        background-position: 0% 50%, 0% 50%, 20% 80%;
+                    }
+                }
+                
+                /* Infinity Cards Cosmic Effects */
+                .infinity-cards::before {
+                    content: '';
+                    position: absolute;
+                    top: -5px;
+                    left: -5px;
+                    right: -5px;
+                    bottom: -5px;
+                    background: radial-gradient(circle at 30% 70%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+                                radial-gradient(circle at 70% 30%, rgba(75, 0, 130, 0.08) 0%, transparent 50%);
+                    border-radius: inherit;
+                    animation: cosmicAura 8s linear infinite;
+                    pointer-events: none;
+                    z-index: -1;
+                }
+                
+                .infinity-cards::after {
+                    content: '✦ ✧ ⋆ ✦ ✧';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: rgba(186, 85, 211, 0.3);
+                    font-size: 8px;
+                    letter-spacing: 8px;
+                    animation: starFloat 6s ease-in-out infinite;
+                    pointer-events: none;
+                    z-index: 1;
+                }
+                
+                @keyframes cosmicAura {
+                    0% { 
+                        background-position: 0% 50%, 100% 50%;
+                        opacity: 0.8;
+                    }
+                    50% {
+                        background-position: 100% 50%, 0% 50%;
+                        opacity: 1;
+                    }
+                    100% { 
+                        background-position: 0% 50%, 100% 50%;
+                        opacity: 0.8;
+                    }
+                }
+                
+                @keyframes starFloat {
+                    0%, 100% { 
+                        opacity: 0.2;
+                        transform: translate(-50%, -50%) rotate(0deg);
+                    }
+                    50% { 
+                        opacity: 0.4;
+                        transform: translate(-50%, -50%) rotate(180deg);
+                    }
                 }
             `;
             document.head.appendChild(style);
@@ -1244,7 +1460,8 @@ class FakeCasino {
                 
                 // Exotic Balls
                 'void-ball': 'background: radial-gradient(circle at 30% 30%, #1a1a1a, #000000, #2d2d30); box-shadow: 0 0 45px #8b008b; border: 2px solid #8b008b; animation: voidDistort 2s ease-in-out infinite;',
-                'cosmic-ball': 'background: radial-gradient(circle at 30% 30%, #0f0f23, #1e0a3c, #4b0082); box-shadow: 0 0 50px #9370db; border: 2px solid #9370db; animation: cosmicSwirl 3s linear infinite;'
+                'cosmic-ball': 'background: radial-gradient(circle at 30% 30%, #0f0f23, #1e0a3c, #4b0082); box-shadow: 0 0 50px #9370db; border: 2px solid #9370db; animation: cosmicSwirl 3s linear infinite;',
+                'singularity-ball': 'background: radial-gradient(circle at 50% 50%, #000000, transparent 30%, #000000 70%, transparent); box-shadow: 0 0 100px #ffffff, 0 0 200px rgba(255, 255, 255, 0.5), inset 0 0 50px #000000; border: 3px solid transparent; border-image: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #8b00ff, #ff0000) 1; animation: singularityPull 1.5s ease-in-out infinite, singularityGlow 3s linear infinite;'
             };
             
             if (ballStyles[this.activeCosmetics.plinko]) {
@@ -1286,6 +1503,27 @@ class FakeCasino {
                     0%, 100% { box-shadow: 0 0 40px #8A2BE2; }
                     33% { box-shadow: 0 0 50px #FF1493, 0 0 60px #8A2BE2; }
                     66% { box-shadow: 0 0 50px #00CED1, 0 0 60px #FF1493; }
+                }
+                @keyframes singularityPull {
+                    0% { 
+                        transform: scale(1) rotate(0deg);
+                        box-shadow: 0 0 100px #ffffff, 0 0 200px rgba(255, 255, 255, 0.5), inset 0 0 50px #000000;
+                    }
+                    50% {
+                        transform: scale(0.8) rotate(180deg);
+                        box-shadow: 0 0 150px #ffffff, 0 0 300px rgba(255, 255, 255, 0.8), inset 0 0 80px #000000;
+                    }
+                    100% { 
+                        transform: scale(1) rotate(360deg);
+                        box-shadow: 0 0 100px #ffffff, 0 0 200px rgba(255, 255, 255, 0.5), inset 0 0 50px #000000;
+                    }
+                }
+                @keyframes singularityGlow {
+                    0% { filter: hue-rotate(0deg) brightness(1.2); }
+                    25% { filter: hue-rotate(90deg) brightness(1.5); }
+                    50% { filter: hue-rotate(180deg) brightness(1.8); }
+                    75% { filter: hue-rotate(270deg) brightness(1.5); }
+                    100% { filter: hue-rotate(360deg) brightness(1.2); }
                 }
             `;
             document.head.appendChild(style);
@@ -2022,14 +2260,17 @@ class FakeCasino {
                 
                 // Legendary (Orange)
                 { id: 'dragon-cards', name: 'Dragon Cards', icon: '🐉', price: 1200, rarity: 'legendary' },
-                { id: 'rainbow-cards', name: 'Rainbow Cards', icon: '�', price: 1100, rarity: 'legendary' },
+                { id: 'rainbow-cards', name: 'Rainbow Cards', icon: '🌈', price: 1100, rarity: 'legendary' },
                 { id: 'ocean-cards', name: 'Ocean Wave Cards', icon: '🌊', price: 1000, rarity: 'legendary' },
                 { id: 'galaxy-cards', name: 'Galaxy Cards', icon: '⭐', price: 1300, rarity: 'legendary' },
                 
-                // Exotic (Pink/Magenta)
-                { id: 'prism-cards', name: 'Prism Cards', icon: '🔮', price: 2000, rarity: 'exotic' },
-                { id: 'void-cards', name: 'Void Cards', icon: '⚫', price: 2500, rarity: 'exotic' },
-                { id: 'celestial-cards', name: 'Celestial Cards', icon: '🌟', price: 2200, rarity: 'exotic' }
+                // Mythic (Bright Cyan)
+                { id: 'prism-cards', name: 'Prism Cards', icon: '🔮', price: 3500, rarity: 'mythic' },
+                { id: 'void-cards', name: 'Void Cards', icon: '⚫', price: 4000, rarity: 'mythic' },
+                { id: 'celestial-cards', name: 'Celestial Cards', icon: '🌟', price: 3800, rarity: 'mythic' },
+                
+                // Exotic (Animated Rainbow)
+                { id: 'infinity-cards', name: 'Infinity Cards', icon: '♾️', price: 10000, rarity: 'exotic' }
             ],
             backgrounds: [
                 // Common
@@ -2057,9 +2298,12 @@ class FakeCasino {
                 { id: 'matrix-bg', name: 'Matrix', icon: '💚', price: 1200, rarity: 'legendary' },
                 { id: 'cyberpunk-bg', name: 'Cyberpunk City', icon: '🤖', price: 1300, rarity: 'legendary' },
                 
+                // Mythic
+                { id: 'dimension-bg', name: 'Dimensional Rift', icon: '🌀', price: 3500, rarity: 'mythic' },
+                { id: 'quantum-bg', name: 'Quantum Field', icon: '⚛️', price: 3800, rarity: 'mythic' },
+                
                 // Exotic
-                { id: 'dimension-bg', name: 'Dimensional Rift', icon: '🌀', price: 2000, rarity: 'exotic' },
-                { id: 'quantum-bg', name: 'Quantum Field', icon: '⚛️', price: 2200, rarity: 'exotic' }
+                { id: 'multiverse-bg', name: 'Multiverse Portal', icon: '🌐', price: 12000, rarity: 'exotic' }
             ],
             effects: [
                 // Common
@@ -2087,9 +2331,12 @@ class FakeCasino {
                 { id: 'coins-fx', name: 'Coin Rain', icon: '🪙', price: 1000, rarity: 'legendary' },
                 { id: 'phoenix-fx', name: 'Phoenix Flames', icon: '🔥', price: 1200, rarity: 'legendary' },
                 
+                // Mythic
+                { id: 'portal-fx', name: 'Portal Vortex', icon: '🌀', price: 3500, rarity: 'mythic' },
+                { id: 'cosmic-fx', name: 'Cosmic Storm', icon: '🌌', price: 4000, rarity: 'mythic' },
+                
                 // Exotic
-                { id: 'portal-fx', name: 'Portal Vortex', icon: '🌀', price: 2000, rarity: 'exotic' },
-                { id: 'cosmic-fx', name: 'Cosmic Storm', icon: '🌌', price: 2500, rarity: 'exotic' }
+                { id: 'reality-break-fx', name: 'Reality Break', icon: '💥', price: 15000, rarity: 'exotic' }
             ],
             plinko: [
                 // Common
@@ -2114,9 +2361,12 @@ class FakeCasino {
                 { id: 'plasma-ball', name: 'Plasma Ball', icon: '🟣', price: 1000, rarity: 'legendary' },
                 { id: 'dragon-ball', name: 'Dragon Ball', icon: '🐉', price: 1200, rarity: 'legendary' },
                 
+                // Mythic
+                { id: 'void-ball', name: 'Void Ball', icon: '⚫', price: 3500, rarity: 'mythic' },
+                { id: 'cosmic-ball', name: 'Cosmic Ball', icon: '🌌', price: 3800, rarity: 'mythic' },
+                
                 // Exotic
-                { id: 'void-ball', name: 'Void Ball', icon: '⚫', price: 2000, rarity: 'exotic' },
-                { id: 'cosmic-ball', name: 'Cosmic Ball', icon: '🌌', price: 2200, rarity: 'exotic' }
+                { id: 'singularity-ball', name: 'Singularity Ball', icon: '🕳️', price: 11000, rarity: 'exotic' }
             ],
             planes: [
                 // Common
@@ -2136,12 +2386,15 @@ class FakeCasino {
                 { id: 'phoenix-plane', name: 'Phoenix', icon: '�', price: 1000, rarity: 'epic' },
                 
                 // Legendary
-                { id: 'dragon-plane', name: 'Dragon', icon: '�', price: 1500, rarity: 'legendary' },
+                { id: 'dragon-plane', name: 'Dragon', icon: '🐉', price: 1500, rarity: 'legendary' },
                 { id: 'spaceship-plane', name: 'Alien Ship', icon: '👽', price: 1300, rarity: 'legendary' },
                 
+                // Mythic
+                { id: 'void-ship', name: 'Void Ship', icon: '⚫', price: 4000, rarity: 'mythic' },
+                { id: 'time-machine', name: 'Time Machine', icon: '⏰', price: 4500, rarity: 'mythic' },
+                
                 // Exotic
-                { id: 'void-ship', name: 'Void Ship', icon: '⚫', price: 2500, rarity: 'exotic' },
-                { id: 'time-machine', name: 'Time Machine', icon: '⏰', price: 3000, rarity: 'exotic' }
+                { id: 'reality-warper', name: 'Reality Warper', icon: '🌀', price: 13000, rarity: 'exotic' }
             ],
             trails: [
                 // Common
@@ -2164,9 +2417,12 @@ class FakeCasino {
                 { id: 'galaxy-trail', name: 'Galaxy Trail', icon: '🌌', price: 1200, rarity: 'legendary' },
                 { id: 'phoenix-trail', name: 'Phoenix Trail', icon: '🔥', price: 1400, rarity: 'legendary' },
                 
+                // Mythic
+                { id: 'void-trail', name: 'Void Trail', icon: '⚫', price: 3500, rarity: 'mythic' },
+                { id: 'dimension-trail', name: 'Dimension Trail', icon: '🌀', price: 4000, rarity: 'mythic' },
+                
                 // Exotic
-                { id: 'void-trail', name: 'Void Trail', icon: '⚫', price: 2000, rarity: 'exotic' },
-                { id: 'dimension-trail', name: 'Dimension Trail', icon: '🌀', price: 2500, rarity: 'exotic' }
+                { id: 'quantum-stream', name: 'Quantum Stream', icon: '⚛️', price: 11000, rarity: 'exotic' }
             ],
             cursors: [
                 // Common
@@ -2189,9 +2445,12 @@ class FakeCasino {
                 { id: 'dragon-cursor', name: 'Dragon Claw', icon: '🐉', price: 1200, rarity: 'legendary' },
                 { id: 'cosmic-cursor', name: 'Cosmic Cursor', icon: '🌌', price: 1300, rarity: 'legendary' },
                 
+                // Mythic
+                { id: 'void-cursor', name: 'Void Pointer', icon: '⚫', price: 3800, rarity: 'mythic' },
+                { id: 'quantum-cursor', name: 'Quantum Hand', icon: '⚛️', price: 4200, rarity: 'mythic' },
+                
                 // Exotic
-                { id: 'void-cursor', name: 'Void Pointer', icon: '⚫', price: 2000, rarity: 'exotic' },
-                { id: 'quantum-cursor', name: 'Quantum Hand', icon: '⚛️', price: 2500, rarity: 'exotic' }
+                { id: 'reality-cursor', name: 'Reality Shaper', icon: '🌀', price: 14000, rarity: 'exotic' }
             ],
             particles: [
                 // Common
@@ -2214,9 +2473,12 @@ class FakeCasino {
                 { id: 'dragon-scales', name: 'Dragon Scales', icon: '🐉', price: 1300, rarity: 'legendary' },
                 { id: 'star-fragments', name: 'Star Fragments', icon: '🌟', price: 1400, rarity: 'legendary' },
                 
+                // Mythic
+                { id: 'void-fragments', name: 'Void Fragments', icon: '⚫', price: 3600, rarity: 'mythic' },
+                { id: 'quantum-particles', name: 'Quantum Particles', icon: '⚛️', price: 4100, rarity: 'mythic' },
+                
                 // Exotic
-                { id: 'void-fragments', name: 'Void Fragments', icon: '⚫', price: 2200, rarity: 'exotic' },
-                { id: 'quantum-particles', name: 'Quantum Particles', icon: '⚛️', price: 2800, rarity: 'exotic' }
+                { id: 'reality-shards', name: 'Reality Shards', icon: '🌀', price: 12000, rarity: 'exotic' }
             ],
             themes: [
                 // Common
@@ -2239,9 +2501,12 @@ class FakeCasino {
                 { id: 'dragon-lair', name: 'Dragon\'s Lair', icon: '🐉', price: 2000, rarity: 'legendary' },
                 { id: 'phoenix-temple', name: 'Phoenix Temple', icon: '🔥', price: 2200, rarity: 'legendary' },
                 
+                // Mythic
+                { id: 'void-dimension', name: 'Void Dimension', icon: '⚫', price: 4500, rarity: 'mythic' },
+                { id: 'quantum-realm', name: 'Quantum Realm', icon: '⚛️', price: 5000, rarity: 'mythic' },
+                
                 // Exotic
-                { id: 'void-dimension', name: 'Void Dimension', icon: '⚫', price: 3500, rarity: 'exotic' },
-                { id: 'quantum-realm', name: 'Quantum Realm', icon: '⚛️', price: 4000, rarity: 'exotic' }
+                { id: 'omniverse', name: 'Omniverse Matrix', icon: '🌌', price: 16000, rarity: 'exotic' }
             ]
         };
 
