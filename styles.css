@@ -984,11 +984,19 @@ body {
     animation: legendaryGlow 2s ease-in-out infinite alternate;
 }
 
+.shop-item.rarity-mythic {
+    border-color: #7c4dff;
+    background: linear-gradient(135deg, #3f51b5, #5c6bc0);
+    box-shadow: 0 0 30px rgba(124, 77, 255, 0.7);
+    animation: mythicShimmer 2.5s ease-in-out infinite alternate;
+}
+
 .shop-item.rarity-exotic {
-    border-color: #e91e63;
-    background: linear-gradient(135deg, #ad1457, #c2185b);
-    box-shadow: 0 0 30px rgba(233, 30, 99, 0.7);
-    animation: exoticPulse 1.5s ease-in-out infinite alternate;
+    border: 3px solid;
+    border-image: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #8b00ff, #ff0000) 1;
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
+    animation: exoticRainbow 3s linear infinite, exoticPulse 2s ease-in-out infinite alternate;
 }
 
 @keyframes legendaryGlow {
@@ -996,14 +1004,48 @@ body {
     100% { box-shadow: 0 0 35px rgba(255, 152, 0, 0.9), 0 0 50px rgba(255, 193, 7, 0.4); }
 }
 
+@keyframes mythicShimmer {
+    0% { 
+        box-shadow: 0 0 30px rgba(124, 77, 255, 0.7);
+        filter: hue-rotate(0deg);
+    }
+    100% { 
+        box-shadow: 0 0 40px rgba(124, 77, 255, 1), 0 0 60px rgba(63, 81, 181, 0.6);
+        filter: hue-rotate(30deg);
+    }
+}
+
+@keyframes exoticRainbow {
+    0% { 
+        filter: hue-rotate(0deg) brightness(1.2);
+        border-image: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #8b00ff, #ff0000) 1;
+    }
+    25% { 
+        filter: hue-rotate(90deg) brightness(1.3);
+        border-image: linear-gradient(45deg, #ff7f00, #ffff00, #00ff00, #0000ff, #8b00ff, #ff0000, #ff7f00) 1;
+    }
+    50% { 
+        filter: hue-rotate(180deg) brightness(1.4);
+        border-image: linear-gradient(45deg, #ffff00, #00ff00, #0000ff, #8b00ff, #ff0000, #ff7f00, #ffff00) 1;
+    }
+    75% { 
+        filter: hue-rotate(270deg) brightness(1.3);
+        border-image: linear-gradient(45deg, #00ff00, #0000ff, #8b00ff, #ff0000, #ff7f00, #ffff00, #00ff00) 1;
+    }
+    100% { 
+        filter: hue-rotate(360deg) brightness(1.2);
+        border-image: linear-gradient(45deg, #0000ff, #8b00ff, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff) 1;
+    }
+}
+
 @keyframes exoticPulse {
     0% { 
-        box-shadow: 0 0 30px rgba(233, 30, 99, 0.7);
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
         transform: scale(1);
     }
     100% { 
-        box-shadow: 0 0 40px rgba(233, 30, 99, 1), 0 0 60px rgba(233, 30, 99, 0.5);
-        transform: scale(1.02);
+        box-shadow: 0 0 60px rgba(255, 255, 255, 1), 0 0 80px rgba(255, 215, 0, 0.6);
+        transform: scale(1.03);
     }
 }
 
@@ -1041,9 +1083,15 @@ body {
     animation: badgeGlow 2s ease-in-out infinite alternate;
 }
 
+.rarity-mythic .rarity-badge {
+    background: linear-gradient(135deg, #5c6bc0, #7c4dff);
+    animation: mythicBadgeShimmer 2.5s ease-in-out infinite alternate;
+}
+
 .rarity-exotic .rarity-badge {
-    background: linear-gradient(135deg, #c2185b, #e91e63);
-    animation: badgePulse 1.5s ease-in-out infinite alternate;
+    background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #8b00ff, #ff0000);
+    background-size: 200% 200%;
+    animation: rainbowBadge 3s linear infinite, badgeRainbowPulse 2s ease-in-out infinite alternate;
 }
 
 @keyframes badgeGlow {
@@ -1051,9 +1099,26 @@ body {
     100% { box-shadow: 0 0 15px rgba(255, 152, 0, 0.8); }
 }
 
-@keyframes badgePulse {
-    0% { box-shadow: 0 0 5px rgba(233, 30, 99, 0.5); }
-    100% { box-shadow: 0 0 15px rgba(233, 30, 99, 0.8); }
+@keyframes mythicBadgeShimmer {
+    0% { box-shadow: 0 0 5px rgba(124, 77, 255, 0.5); }
+    100% { box-shadow: 0 0 15px rgba(124, 77, 255, 0.9); }
+}
+
+@keyframes rainbowBadge {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes badgeRainbowPulse {
+    0% { 
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        transform: scale(1);
+    }
+    100% { 
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+        transform: scale(1.05);
+    }
 }
 
 .shop-item:hover {
@@ -1504,4 +1569,187 @@ body {
         box-shadow: 0 0 70px #9370db, 0 0 90px #4b0082;
         transform: rotate(360deg);
     }
+}
+
+/* Enhanced Exotic Card Animations */
+@keyframes prismShift {
+    0% { 
+        background: linear-gradient(135deg, #ff9a9e, #fecfef, #a8edea, #d299c2);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    25% { 
+        background: linear-gradient(135deg, #fecfef, #a8edea, #d299c2, #fed6e3);
+        box-shadow: 0 0 30px rgba(168, 237, 234, 0.8);
+        transform: perspective(1000px) rotateY(5deg);
+    }
+    50% { 
+        background: linear-gradient(135deg, #a8edea, #d299c2, #fed6e3, #ff9a9e);
+        box-shadow: 0 0 35px rgba(210, 153, 194, 0.8);
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    75% { 
+        background: linear-gradient(135deg, #d299c2, #fed6e3, #ff9a9e, #fecfef);
+        box-shadow: 0 0 30px rgba(254, 214, 227, 0.8);
+        transform: perspective(1000px) rotateY(-5deg);
+    }
+    100% { 
+        background: linear-gradient(135deg, #fed6e3, #ff9a9e, #fecfef, #a8edea);
+        box-shadow: 0 0 25px rgba(255, 154, 158, 0.8);
+        transform: perspective(1000px) rotateY(0deg);
+    }
+}
+
+@keyframes voidDistortion {
+    0% { 
+        transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+        filter: blur(0px) brightness(1);
+    }
+    25% { 
+        transform: perspective(1000px) rotateX(2deg) rotateY(3deg);
+        filter: blur(1px) brightness(1.2);
+    }
+    50% { 
+        transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+        filter: blur(0px) brightness(0.8);
+    }
+    75% { 
+        transform: perspective(1000px) rotateX(-2deg) rotateY(-3deg);
+        filter: blur(1px) brightness(1.2);
+    }
+    100% { 
+        transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+        filter: blur(0px) brightness(1);
+    }
+}
+
+@keyframes starField {
+    0% { 
+        background-position: 0% 0%;
+        transform: scale(1);
+    }
+    25% { 
+        background-position: 25% 25%;
+        transform: scale(1.02);
+    }
+    50% { 
+        background-position: 50% 50%;
+        transform: scale(1);
+    }
+    75% { 
+        background-position: 75% 75%;
+        transform: scale(0.98);
+    }
+    100% { 
+        background-position: 100% 100%;
+        transform: scale(1);
+    }
+}
+
+/* Exotic Card Pseudo-elements for Enhanced Effects */
+.card {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Prism Card Holographic Effect */
+.card.prism-cards::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+        transparent 30%, 
+        rgba(255,255,255,0.3) 50%, 
+        transparent 70%);
+    animation: holographicSweep 3s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes holographicSweep {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    50% { transform: translateX(0%) translateY(0%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* Void Card Shadow Particles */
+.card.void-cards::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, rgba(139, 0, 139, 0.5), transparent),
+        radial-gradient(1px 1px at 40px 70px, rgba(139, 0, 139, 0.6), transparent),
+        radial-gradient(2px 2px at 90px 40px, rgba(139, 0, 139, 0.4), transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(139, 0, 139, 0.7), transparent);
+    animation: voidParticles 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes voidParticles {
+    0%, 100% { opacity: 0.4; transform: scale(1) rotate(0deg); }
+    50% { opacity: 0.9; transform: scale(1.2) rotate(5deg); }
+}
+
+/* Celestial Card Starbursts */
+.card.celestial-cards::before {
+    content: '✦';
+    position: absolute;
+    top: 10%;
+    right: 15%;
+    color: #ffd700;
+    font-size: 14px;
+    animation: starTwinkle 2s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+    text-shadow: 0 0 8px #ffd700;
+}
+
+.card.celestial-cards::after {
+    content: '✧';
+    position: absolute;
+    bottom: 15%;
+    left: 20%;
+    color: #ffd700;
+    font-size: 10px;
+    animation: starTwinkle 2.5s ease-in-out infinite reverse;
+    pointer-events: none;
+    z-index: 1;
+    text-shadow: 0 0 6px #ffd700;
+}
+
+@keyframes starTwinkle {
+    0%, 100% { 
+        opacity: 0.4; 
+        transform: scale(1) rotate(0deg);
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1.5) rotate(180deg);
+    }
+}
+
+/* Enhanced Exotic Card Hover Effects */
+.card.exotic-card:hover {
+    transform: scale(1.05) perspective(1000px) rotateY(5deg);
+    transition: all 0.3s ease;
+}
+
+.card.prism-cards:hover {
+    filter: saturate(1.5) brightness(1.1);
+}
+
+.card.void-cards:hover {
+    filter: contrast(1.2) brightness(1.3);
+}
+
+.card.celestial-cards:hover {
+    filter: brightness(1.2) contrast(1.1);
 }
